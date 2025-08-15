@@ -79,7 +79,11 @@ namespace Biometricos.Forms
                 objEntidad.status = "I";
                 objEntidad.descripcion = tbDescrip.Text.Trim();
                 objEntidad.status_inc = "I";
-                objEntidad.tabla = tabla;
+                if (cbMunicipio.SelectedItem.ToString() == "Tijuana" || cbMunicipio.SelectedItem.ToString() == "Rosarito")
+                    objEntidad.tabla = "reportetj";
+                else
+                    objEntidad.tabla = "reporte1";
+                //objEntidad.tabla = tabla;
             }
             else
             {
@@ -91,7 +95,11 @@ namespace Biometricos.Forms
                 objEntidad.status = "A";
                 objEntidad.descripcion = tbDescrip.Text.Trim();
                 objEntidad.status_inc = "A";
-                objEntidad.tabla = tabla;
+                if (cbMunicipio.SelectedItem.ToString() == "Tijuana" || cbMunicipio.SelectedItem.ToString() == "Rosarito")
+                    objEntidad.tabla = "reportetj";
+                else
+                    objEntidad.tabla = "reporte1";
+                //objEntidad.tabla = tabla;
             }
         }
 

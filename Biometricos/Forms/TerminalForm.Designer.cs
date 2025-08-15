@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TerminalForm));
             this.gbBiomet = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.label72 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
             this.btnOnLine = new System.Windows.Forms.Button();
@@ -58,8 +60,6 @@
             this.lbSysOutputInfo = new System.Windows.Forms.ListBox();
             this.lbDeviceTime = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnLimpiar = new System.Windows.Forms.Button();
             this.gbBiomet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcBiomet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvBiomet)).BeginInit();
@@ -101,6 +101,34 @@
             this.gbBiomet.Size = new System.Drawing.Size(1066, 148);
             this.gbBiomet.TabIndex = 958;
             this.gbBiomet.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(578, 116);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(137, 19);
+            this.label1.TabIndex = 1028;
+            this.label1.Text = "Limpiar Campos";
+            this.label1.Visible = false;
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLimpiar.BackColor = System.Drawing.Color.White;
+            this.btnLimpiar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiar.Image")));
+            this.btnLimpiar.Location = new System.Drawing.Point(601, 54);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(71, 61);
+            this.btnLimpiar.TabIndex = 1027;
+            this.btnLimpiar.UseVisualStyleBackColor = false;
+            this.btnLimpiar.Visible = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // label72
             // 
@@ -420,32 +448,6 @@
             this.dataGridView1.TabIndex = 1029;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(578, 116);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(137, 19);
-            this.label1.TabIndex = 1028;
-            this.label1.Text = "Limpiar Campos";
-            // 
-            // btnLimpiar
-            // 
-            this.btnLimpiar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLimpiar.BackColor = System.Drawing.Color.White;
-            this.btnLimpiar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiar.Image")));
-            this.btnLimpiar.Location = new System.Drawing.Point(601, 54);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(71, 61);
-            this.btnLimpiar.TabIndex = 1027;
-            this.btnLimpiar.UseVisualStyleBackColor = false;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
-            // 
             // TerminalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -501,10 +503,10 @@
         private System.Windows.Forms.Label label35;
         private DevExpress.XtraGrid.GridControl gcBiomet;
         private DevExpress.XtraGrid.Views.Grid.GridView gvBiomet;
-        private System.Windows.Forms.ListBox lbSysOutputInfo;
         private System.Windows.Forms.Label lbDeviceTime;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLimpiar;
+        public System.Windows.Forms.ListBox lbSysOutputInfo;
     }
 }

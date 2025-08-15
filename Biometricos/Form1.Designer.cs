@@ -32,6 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pnlMenuIzq = new System.Windows.Forms.Panel();
+            this.btnUsuarios = new System.Windows.Forms.Button();
             this.btnBiometricos = new System.Windows.Forms.Button();
             this.pnlPersonalize = new System.Windows.Forms.Panel();
             this.pnlUser = new System.Windows.Forms.Panel();
@@ -39,7 +40,6 @@
             this.pnlAccess = new System.Windows.Forms.Panel();
             this.pnlData = new System.Windows.Forms.Panel();
             this.pnlTerminal = new System.Windows.Forms.Panel();
-            this.btnUsuarios = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.pnlMenuIzq.SuspendLayout();
@@ -77,6 +77,23 @@
             this.pnlMenuIzq.Name = "pnlMenuIzq";
             this.pnlMenuIzq.Size = new System.Drawing.Size(200, 541);
             this.pnlMenuIzq.TabIndex = 1;
+            // 
+            // btnUsuarios
+            // 
+            this.btnUsuarios.BackColor = System.Drawing.Color.Transparent;
+            this.btnUsuarios.FlatAppearance.BorderSize = 0;
+            this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsuarios.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsuarios.ForeColor = System.Drawing.Color.White;
+            this.btnUsuarios.Image = ((System.Drawing.Image)(resources.GetObject("btnUsuarios.Image")));
+            this.btnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUsuarios.Location = new System.Drawing.Point(3, 81);
+            this.btnUsuarios.Name = "btnUsuarios";
+            this.btnUsuarios.Size = new System.Drawing.Size(194, 69);
+            this.btnUsuarios.TabIndex = 1;
+            this.btnUsuarios.Text = "             Enrolamiento";
+            this.btnUsuarios.UseVisualStyleBackColor = false;
+            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
             // 
             // btnBiometricos
             // 
@@ -137,23 +154,6 @@
             this.pnlTerminal.Name = "pnlTerminal";
             this.pnlTerminal.Size = new System.Drawing.Size(16, 17);
             this.pnlTerminal.TabIndex = 7;
-            // 
-            // btnUsuarios
-            // 
-            this.btnUsuarios.BackColor = System.Drawing.Color.Transparent;
-            this.btnUsuarios.FlatAppearance.BorderSize = 0;
-            this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUsuarios.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUsuarios.ForeColor = System.Drawing.Color.White;
-            this.btnUsuarios.Image = ((System.Drawing.Image)(resources.GetObject("btnUsuarios.Image")));
-            this.btnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUsuarios.Location = new System.Drawing.Point(3, 81);
-            this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Size = new System.Drawing.Size(194, 69);
-            this.btnUsuarios.TabIndex = 1;
-            this.btnUsuarios.Text = "             Usuarios";
-            this.btnUsuarios.UseVisualStyleBackColor = false;
-            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
             // 
             // Form1
             // 

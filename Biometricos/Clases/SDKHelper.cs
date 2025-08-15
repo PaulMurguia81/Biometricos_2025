@@ -193,21 +193,21 @@ namespace Biometricos.Clases
             if (bIsConnected == true)
             {
                 axCZKEM1.Disconnect();
-                //sta_UnRegRealTime();
+                sta_UnRegRealTime();
                 SetConnectState(false);
-                //lblOutputInfo.Items.Add("Disconnect with device !");
+                lblOutputInfo.Items.Add("Disconnect with device !");
                 //connected = false;
-                //return -2; //disconnect
+                return -2; //disconnect
             }
 
             if (axCZKEM1.Connect_Net(ip, Convert.ToInt32(port)) == true)
             {
                 SetConnectState(true);
-                //sta_RegRealTime(lblOutputInfo);
-                //lblOutputInfo.Items.Add("Connect with device !");
+                sta_RegRealTime(lblOutputInfo);
+                lblOutputInfo.Items.Add("Connect with device !");
 
                 //get Biotype
-                //sta_getBiometricType();
+                sta_getBiometricType();
 
                 return 1;
             }
@@ -655,7 +655,7 @@ namespace Biometricos.Clases
             string time = Year + "-" + Month + "-" + Day + " " + Hour + ":" + Minute + ":" + Second;
 
             gRealEventListBox.Items.Add("Verify OK.UserID=" + EnrollNumber + " isInvalid=" + IsInValid.ToString() + " state=" + AttState.ToString() + " verifystyle=" + VerifyMethod.ToString() + " time=" + time);
-
+            //MessageBox.Show("Verify OK.UserID=" + EnrollNumber + " isInvalid=" + IsInValid.ToString() + " state=" + AttState.ToString() + " verifystyle=" + VerifyMethod.ToString() + " time=" + time);
             throw new NotImplementedException();
         }
 
@@ -868,7 +868,7 @@ namespace Biometricos.Clases
 
             int idwErrorCode = 0;
             string sUserID = txtUserID.Text.Trim();
-            int iFingerIndex = Convert.ToInt32(cbFingerIndex.Text.Trim());
+            int iFingerIndex = cbFingerIndex.SelectedIndex; /*Convert.ToInt32(cbFingerIndex.Text.Trim());*/
             int iFlag = Convert.ToInt32(cbFlag.Text.Trim());
 
             axCZKEM1.CancelOperation();
@@ -879,7 +879,7 @@ namespace Biometricos.Clases
                 lblOutputInfo.Items.Add("Start to Enroll a new User,UserID=" + sUserID + " FingerID=" + iFingerIndex.ToString() + " Flag=" + iFlag.ToString());
                 if (axCZKEM1.StartIdentify())
                 {
-                    lblOutputInfo.Items.Add("Enroll a new User,UserID" + sUserID);
+                    lblOutputInfo.Items.Add("Enroll a new User,UserID=" + sUserID);
                 }
                 ;//After enrolling templates,you should let the device into the 1:N verification condition
             }
@@ -888,7 +888,6 @@ namespace Biometricos.Clases
                 axCZKEM1.GetLastError(ref idwErrorCode);
                 lblOutputInfo.Items.Add("*Operation failed,ErrorCode=" + idwErrorCode.ToString());
             }
-
             return 1;
         }
 
@@ -1459,7 +1458,7 @@ namespace Biometricos.Clases
 
                 lvUserInfo.Items[index].SubItems.Add(sName);
                 lvUserInfo.Items[index].SubItems.Add(sCardnumber);
-                lvUserInfo.Items[index].SubItems.Add(sPassword);
+                lvUserInfo.Items[index].SubItems.Add(String.Format("*****", sPassword));
 
                 i = 0;
                 xx = 1;
@@ -1493,6 +1492,7 @@ namespace Biometricos.Clases
                             lvUserInfo.Items[index].SubItems.Add(iFlag.ToString());
                             lvUserInfo.Items[index].SubItems.Add(sFPTmpData);
                             lvUserInfo.Items[index].SubItems.Add(iPrivilege.ToString());
+
                         }
 
                         index++;

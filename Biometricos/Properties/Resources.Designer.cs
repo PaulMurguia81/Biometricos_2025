@@ -103,9 +103,29 @@ namespace Biometricos.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap connected_25px {
+            get {
+                object obj = ResourceManager.GetObject("connected_25px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Database_View_50px {
             get {
                 object obj = ResourceManager.GetObject("Database_View_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap disconnected_25px {
+            get {
+                object obj = ResourceManager.GetObject("disconnected_25px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -176,6 +196,16 @@ namespace Biometricos.Properties {
         internal static System.Drawing.Bitmap No_User_50px {
             get {
                 object obj = ResourceManager.GetObject("No_User_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap noImage {
+            get {
+                object obj = ResourceManager.GetObject("noImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

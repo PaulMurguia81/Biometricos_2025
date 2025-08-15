@@ -13,6 +13,8 @@ namespace Biometricos
 {
     public partial class Form1 : Form
     {
+        TerminalForm terminalForm;
+        UsersForm UserMng;
         public Form1()
         {
             InitializeComponent();
@@ -30,15 +32,20 @@ namespace Biometricos
 
             if (pnlTerminal.Controls.Count == 0)
             {
-                TerminalForm terminalForm = new TerminalForm(this);
+                terminalForm = new TerminalForm(this);
                 terminalForm.TopLevel = false;
                 this.pnlTerminal.Controls.Add(terminalForm);
                 terminalForm.btnClicked = true;
                 terminalForm.Show();
                 terminalForm.Dock = DockStyle.Fill;  
             }
+            else
+            {
+                terminalForm.Limpiar();
+            }
         }
 
+       
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
             pnlTerminal.Visible = false;
@@ -51,11 +58,18 @@ namespace Biometricos
 
             if (pnlUser.Controls.Count == 0)
             {
-                UsersForm UserMng = new UsersForm(this);
+                UserMng = new UsersForm(this);
                 UserMng.TopLevel = false;
                 this.pnlUser.Controls.Add(UserMng);
                 UserMng.Show();
                 UserMng.Dock = DockStyle.Fill;
+            }
+            else
+            {
+                UserMng.cargarCombobox();
+                UserMng.gbUsuario.Visible = false;
+                UserMng.btnConnect.PerformClick();
+                UserMng.Limpiar();
             }
         }
     }
