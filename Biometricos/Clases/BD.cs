@@ -243,6 +243,31 @@ namespace Biometricos.Clases
             return dt;
         }
 
+        public DataTable D_BuscarEmpXFecha(E_Usuarios e_Usuarios, string fechaini, string fechafin)
+        {
+            DB2Command cmd = new DB2Command("SELECT DISTINCT c.descripcion as ubicacion,r.fecha, to_char(extend (r.hora, hour to second),'%H:%M:%S') as hora, r.num_inc as num_credencial, e.nombreabreviado as nombre,c.id_biometrico as biometrico  from reporte1 r,nrhempleados e, config_biometricos c where r.num_inc=e.numcredencial and c.id_biometrico= r.id_biometrico and r.fecha between '" + fechaini + "' and '" + fechafin + "' and e.nombreabreviado LIKE '%" + e_Usuarios.Nombre + "%' order by r.fecha desc", con);
+            cmd.CommandType = CommandType.Text;
+            DB2DataAdapter da = new DB2DataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            return dt;
+        }
+
+        public DataTable D_BuscarEmpXNIC(E_Usuarios e_Usuarios, string fechaini, string fechafin)
+        {
+            DB2Command cmd = new DB2Command("SELECT DISTINCT c.descripcion as ubicacion,r.fecha, to_char(extend (r.hora, hour to second),'%H:%M:%S') as hora, r.num_inc as num_credencial, e.nombreabreviado as nombre,c.id_biometrico as biometrico  from reporte1 r,nrhempleados e, config_biometricos c where r.num_inc=e.numcredencial and c.id_biometrico= r.id_biometrico and r.fecha between '" + fechaini + "' and '" + fechafin + "' and e.numcredencial= " + e_Usuarios.NIC + " order by r.fecha desc", con);
+            cmd.CommandType = CommandType.Text;
+            DB2DataAdapter da = new DB2DataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            return dt;
+        }
+
+
+
+
         #endregion
     }
 }

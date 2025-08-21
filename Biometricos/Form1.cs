@@ -15,6 +15,7 @@ namespace Biometricos
     {
         TerminalForm terminalForm;
         UsersForm UserMng;
+        Consulta consulta;
         public Form1()
         {
             InitializeComponent();
@@ -42,10 +43,10 @@ namespace Biometricos
             else
             {
                 terminalForm.Limpiar();
+                terminalForm.cargarGrid();
             }
         }
-
-       
+ 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
             pnlTerminal.Visible = false;
@@ -68,8 +69,42 @@ namespace Biometricos
             {
                 UserMng.cargarCombobox();
                 UserMng.gbUsuario.Visible = false;
-                UserMng.btnConnect.PerformClick();
+                if (UserMng.lvUserInfo.Items.Count>0)
+                    UserMng.btnConnect.PerformClick();
+                
                 UserMng.Limpiar();
+            }
+        }
+
+        //private void btnConsultas_Click(object sender, EventArgs e)
+        //{
+            
+        //}
+
+        private void btnConsultas_Click_1(object sender, EventArgs e)
+        {
+            pnlTerminal.Visible = false;
+            pnlUser.Visible = false;
+            pnlPersonalize.Visible = true;
+            pnlData.Visible = false;
+            pnlAccess.Visible = false;
+            pnlOther.Visible = false;
+            pnlPersonalize.Dock = DockStyle.Fill;
+
+            if (pnlPersonalize.Controls.Count == 0)
+            {
+                consulta = new Consulta(this);
+                consulta.TopLevel = false;
+                this.pnlPersonalize.Controls.Add(consulta);
+                consulta.Show();
+                consulta.Dock = DockStyle.Fill;
+            }
+            else
+            {
+                consulta.cargarCombobox();
+                if (consulta.gv_Attlog.RowCount > 0)
+                    consulta.btnConnect.PerformClick();
+
             }
         }
     }

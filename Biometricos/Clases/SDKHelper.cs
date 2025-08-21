@@ -4130,7 +4130,8 @@ namespace Biometricos.Clases
                 {
                     DataRow dr = dt_log.NewRow();
                     dr["User ID"] = sdwEnrollNumber;
-                    dr["Verify Date"] = idwYear + "-" + idwMonth + "-" + idwDay + " " + idwHour + ":" + idwMinute + ":" + idwSecond;
+                    dr["Verify Date"] = idwYear + "-" + idwMonth + "-" + idwDay;
+                    dr["Verify Hour"] = idwHour + ":" + idwMinute + ":" + idwSecond;
                     dr["Verify Type"] = idwVerifyMode;
                     dr["Verify State"] = idwInOutMode;
                     dr["WorkCode"] = idwWorkcode;
@@ -4189,7 +4190,8 @@ namespace Biometricos.Clases
                 {
                     DataRow dr = dt_logPeriod.NewRow();
                     dr["User ID"] = sdwEnrollNumber;
-                    dr["Verify Date"] = idwYear + "-" + idwMonth + "-" + idwDay + " " + idwHour + ":" + idwMinute + ":" + idwSecond;
+                    dr["Verify Date"] = idwYear + "-" + idwMonth + "-" + idwDay;
+                    dr["Verify Hour"] = idwHour + ":" + idwMinute + ":" + idwSecond;
                     dr["Verify Type"] = idwVerifyMode;
                     dr["Verify State"] = idwInOutMode;
                     dr["WorkCode"] = idwWorkcode;

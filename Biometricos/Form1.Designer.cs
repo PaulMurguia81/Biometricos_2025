@@ -32,6 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pnlMenuIzq = new System.Windows.Forms.Panel();
+            this.btnConsultas = new System.Windows.Forms.Button();
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.btnBiometricos = new System.Windows.Forms.Button();
             this.pnlPersonalize = new System.Windows.Forms.Panel();
@@ -70,6 +71,7 @@
             // pnlMenuIzq
             // 
             this.pnlMenuIzq.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(133)))), ((int)(((byte)(136)))));
+            this.pnlMenuIzq.Controls.Add(this.btnConsultas);
             this.pnlMenuIzq.Controls.Add(this.btnUsuarios);
             this.pnlMenuIzq.Controls.Add(this.btnBiometricos);
             this.pnlMenuIzq.Dock = System.Windows.Forms.DockStyle.Left;
@@ -77,6 +79,24 @@
             this.pnlMenuIzq.Name = "pnlMenuIzq";
             this.pnlMenuIzq.Size = new System.Drawing.Size(200, 541);
             this.pnlMenuIzq.TabIndex = 1;
+            // 
+            // btnConsultas
+            // 
+            this.btnConsultas.BackColor = System.Drawing.Color.Transparent;
+            this.btnConsultas.FlatAppearance.BorderSize = 0;
+            this.btnConsultas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConsultas.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsultas.ForeColor = System.Drawing.Color.White;
+            this.btnConsultas.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultas.Image")));
+            this.btnConsultas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConsultas.Location = new System.Drawing.Point(3, 156);
+            this.btnConsultas.Name = "btnConsultas";
+            this.btnConsultas.Size = new System.Drawing.Size(194, 69);
+            this.btnConsultas.TabIndex = 2;
+            this.btnConsultas.Text = "Consultas";
+            this.btnConsultas.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnConsultas.UseVisualStyleBackColor = false;
+            this.btnConsultas.Click += new System.EventHandler(this.btnConsultas_Click_1);
             // 
             // btnUsuarios
             // 
@@ -91,7 +111,8 @@
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Size = new System.Drawing.Size(194, 69);
             this.btnUsuarios.TabIndex = 1;
-            this.btnUsuarios.Text = "             Enrolamiento";
+            this.btnUsuarios.Text = "Enrolamiento";
+            this.btnUsuarios.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUsuarios.UseVisualStyleBackColor = false;
             this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
             // 
@@ -109,6 +130,7 @@
             this.btnBiometricos.Size = new System.Drawing.Size(194, 69);
             this.btnBiometricos.TabIndex = 0;
             this.btnBiometricos.Text = "             Biometricos";
+            this.btnBiometricos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBiometricos.UseVisualStyleBackColor = false;
             this.btnBiometricos.Click += new System.EventHandler(this.btnBiometricos_Click);
             // 
@@ -194,6 +216,7 @@
         private System.Windows.Forms.Panel pnlData;
         private System.Windows.Forms.Panel pnlTerminal;
         private System.Windows.Forms.Button btnUsuarios;
+        private System.Windows.Forms.Button btnConsultas;
     }
 }
 

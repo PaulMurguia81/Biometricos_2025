@@ -60,19 +60,21 @@
             this.tbMaterno = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.gbUsuario = new System.Windows.Forms.GroupBox();
+            this.btnBorrar = new System.Windows.Forms.Button();
             this.picFotoEmpleado = new System.Windows.Forms.PictureBox();
             this.btnEditarUsuario = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConnect = new System.Windows.Forms.Button();
             this.cbFlag = new System.Windows.Forms.ComboBox();
-            this.btnBorrar = new System.Windows.Forms.Button();
             this.gbUsuario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFotoEmpleado)).BeginInit();
             this.SuspendLayout();
             // 
             // cbBiometricos
             // 
+            this.cbBiometricos.BackColor = System.Drawing.Color.White;
+            this.cbBiometricos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBiometricos.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbBiometricos.FormattingEnabled = true;
             this.cbBiometricos.Location = new System.Drawing.Point(184, 25);
@@ -96,16 +98,18 @@
             this.lbSysOutputInfo.FormattingEnabled = true;
             this.lbSysOutputInfo.Location = new System.Drawing.Point(559, 2);
             this.lbSysOutputInfo.Name = "lbSysOutputInfo";
-            this.lbSysOutputInfo.Size = new System.Drawing.Size(252, 108);
+            this.lbSysOutputInfo.Size = new System.Drawing.Size(252, 17);
             this.lbSysOutputInfo.TabIndex = 1028;
+            this.lbSysOutputInfo.Visible = false;
             // 
             // lbRTOutputInfo
             // 
             this.lbRTOutputInfo.FormattingEnabled = true;
             this.lbRTOutputInfo.Location = new System.Drawing.Point(825, 2);
             this.lbRTOutputInfo.Name = "lbRTOutputInfo";
-            this.lbRTOutputInfo.Size = new System.Drawing.Size(252, 108);
+            this.lbRTOutputInfo.Size = new System.Drawing.Size(252, 17);
             this.lbRTOutputInfo.TabIndex = 1029;
+            this.lbRTOutputInfo.Visible = false;
             // 
             // PrgSTA
             // 
@@ -135,9 +139,9 @@
             this.lvUserInfo.GridLines = true;
             this.lvUserInfo.HideSelection = false;
             this.lvUserInfo.LabelEdit = true;
-            this.lvUserInfo.Location = new System.Drawing.Point(0, 230);
+            this.lvUserInfo.Location = new System.Drawing.Point(0, 181);
             this.lvUserInfo.Name = "lvUserInfo";
-            this.lvUserInfo.Size = new System.Drawing.Size(1211, 323);
+            this.lvUserInfo.Size = new System.Drawing.Size(1211, 372);
             this.lvUserInfo.TabIndex = 1031;
             this.lvUserInfo.UseCompatibleStateImageBehavior = false;
             this.lvUserInfo.View = System.Windows.Forms.View.Details;
@@ -374,12 +378,28 @@
             this.gbUsuario.Controls.Add(this.btnCancelar);
             this.gbUsuario.Controls.Add(this.tbApellido);
             this.gbUsuario.Controls.Add(this.tbMaterno);
-            this.gbUsuario.Location = new System.Drawing.Point(0, 112);
+            this.gbUsuario.Location = new System.Drawing.Point(0, 62);
             this.gbUsuario.Name = "gbUsuario";
             this.gbUsuario.Size = new System.Drawing.Size(1211, 116);
             this.gbUsuario.TabIndex = 1034;
             this.gbUsuario.TabStop = false;
             this.gbUsuario.Visible = false;
+            // 
+            // btnBorrar
+            // 
+            this.btnBorrar.BackColor = System.Drawing.Color.White;
+            this.btnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBorrar.Font = new System.Drawing.Font("Arial Narrow", 12F);
+            this.btnBorrar.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrar.Image")));
+            this.btnBorrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBorrar.Location = new System.Drawing.Point(354, 69);
+            this.btnBorrar.Name = "btnBorrar";
+            this.btnBorrar.Size = new System.Drawing.Size(107, 41);
+            this.btnBorrar.TabIndex = 1035;
+            this.btnBorrar.Text = "Eliminar";
+            this.btnBorrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnBorrar.UseVisualStyleBackColor = false;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
             // picFotoEmpleado
             // 
@@ -470,22 +490,6 @@
             this.cbFlag.TabIndex = 1035;
             this.cbFlag.Visible = false;
             // 
-            // btnBorrar
-            // 
-            this.btnBorrar.BackColor = System.Drawing.Color.White;
-            this.btnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBorrar.Font = new System.Drawing.Font("Arial Narrow", 12F);
-            this.btnBorrar.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrar.Image")));
-            this.btnBorrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBorrar.Location = new System.Drawing.Point(354, 69);
-            this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(107, 41);
-            this.btnBorrar.TabIndex = 1035;
-            this.btnBorrar.Text = "Eliminar";
-            this.btnBorrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnBorrar.UseVisualStyleBackColor = false;
-            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
-            // 
             // UsersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -520,7 +524,6 @@
         public System.Windows.Forms.ListBox lbSysOutputInfo;
         private System.Windows.Forms.ListBox lbRTOutputInfo;
         private System.Windows.Forms.ProgressBar PrgSTA;
-        private System.Windows.Forms.ListView lvUserInfo;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
@@ -553,5 +556,6 @@
         private System.Windows.Forms.PictureBox picFotoEmpleado;
         private System.Windows.Forms.ComboBox cbFlag;
         private System.Windows.Forms.Button btnBorrar;
+        public System.Windows.Forms.ListView lvUserInfo;
     }
 }

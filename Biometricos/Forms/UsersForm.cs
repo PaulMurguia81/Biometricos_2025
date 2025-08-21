@@ -109,6 +109,7 @@ namespace Biometricos.Forms
                 gbUsuario.Visible = true;
                 btnConnect.Image = Resources.connected_25px;
                 tbNIC.Focus();
+                cbBiometricos.Enabled = false;
             }
             else if (ret == -2)
             {
@@ -121,6 +122,7 @@ namespace Biometricos.Forms
                 gbUsuario.Visible=false;
                 lbRTOutputInfo.Items.Clear();
                 lbSysOutputInfo.Items.Clear();
+                cbBiometricos.Enabled = true;
             }
             Cursor = Cursors.Default;
         }

@@ -504,9 +504,9 @@
         private DevExpress.XtraGrid.GridControl gcBiomet;
         private DevExpress.XtraGrid.Views.Grid.GridView gvBiomet;
         private System.Windows.Forms.Label lbDeviceTime;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLimpiar;
         public System.Windows.Forms.ListBox lbSysOutputInfo;
+        public System.Windows.Forms.DataGridView dataGridView1;
     }
 }
