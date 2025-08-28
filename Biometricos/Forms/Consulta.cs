@@ -41,6 +41,13 @@ namespace Biometricos.Forms
         private void Consulta_Load(object sender, EventArgs e)
         {
             cargarCombobox();
+            SDK.sta_SetRTLogListBox(RealTimeEventListBox);
+        }
+
+        public ListBox RealTimeEventListBox()
+        {
+            ListBox dtg = lbRTOutputInfo;
+            return dtg;
         }
 
         public void cargarCombobox()
@@ -203,7 +210,7 @@ namespace Biometricos.Forms
                 btnExcel.Enabled = true;                
                 btn_readAttLog.PerformClick();
             }
-            else if (ret == -2)
+            else/* if (ret == -2)*/
             {
                 ShowStatusBar("Biometrico Desconectado!!", true);
                 btnConnect.Text = "Conectar";

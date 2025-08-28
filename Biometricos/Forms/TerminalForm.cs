@@ -20,12 +20,6 @@ namespace Biometricos.Forms
 {
     public partial class TerminalForm : Form
     {
-        public TerminalForm(Form1 Parent)
-        {
-            InitializeComponent();
-            Terminal = Parent;
-        }
-
         #region VARIABLES GLOBALES
 
         private Form1 Terminal;
@@ -38,6 +32,13 @@ namespace Biometricos.Forms
         public bool btnClicked, pingSuccess;
 
         #endregion
+
+        public TerminalForm(Form1 Parent)
+        {
+            InitializeComponent();
+            Terminal = Parent;
+        }
+             
 
         private void TerminalForm_Load(object sender, EventArgs e)
         {

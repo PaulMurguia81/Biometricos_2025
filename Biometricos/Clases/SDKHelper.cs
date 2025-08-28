@@ -166,6 +166,59 @@ namespace Biometricos.Clases
             iMachineNumber = Number;
         }
 
+        public int sta_ConnectTCP1(ListBox lblOutputInfo, string ip, string port, string commKey)
+        {
+            if (ip == "" || port == "" || commKey == "")
+            {
+                lblOutputInfo.Items.Add("*Name, IP, Port or Commkey cannot be null !");
+                return -1;// ip or port is null
+            }
+
+            if (Convert.ToInt32(port) <= 0 || Convert.ToInt32(port) > 65535)
+            {
+                lblOutputInfo.Items.Add("*Port illegal!");
+                return -1;
+            }
+
+            if (Convert.ToInt32(commKey) < 0 || Convert.ToInt32(commKey) > 999999)
+            {
+                lblOutputInfo.Items.Add("*CommKey illegal!");
+                return -1;
+            }
+
+            int idwErrorCode = 0;
+
+            axCZKEM1.SetCommPassword(Convert.ToInt32(commKey));
+
+            if (bIsConnected == true)
+            {
+                axCZKEM1.Disconnect();
+                sta_UnRegRealTime();
+                SetConnectState(false);
+                lblOutputInfo.Items.Add("Disconnect with device !");
+                //connected = false;
+                //return -2; //disconnect
+            }
+
+            if (axCZKEM1.Connect_Net(ip, Convert.ToInt32(port)) == true)
+            {
+                SetConnectState(true);
+                sta_RegRealTime(lblOutputInfo);
+                lblOutputInfo.Items.Add("Connect with device !");
+
+                //get Biotype
+                sta_getBiometricType();
+
+                return 1;
+            }
+            else
+            {
+                axCZKEM1.GetLastError(ref idwErrorCode);
+                lblOutputInfo.Items.Add("*Unable to connect the device,ErrorCode=" + idwErrorCode.ToString());
+                return idwErrorCode;
+            }
+        }
+
         public int sta_ConnectTCP(ListBox lblOutputInfo, string ip, string port, string commKey)
         {
             if (ip == "" || port == "" || commKey == "")
@@ -516,7 +569,7 @@ namespace Biometricos.Clases
         {
             this.axCZKEM1.OnFinger -= new zkemkeeper._IZKEMEvents_OnFingerEventHandler(axCZKEM1_OnFinger);
             this.axCZKEM1.OnVerify -= new zkemkeeper._IZKEMEvents_OnVerifyEventHandler(axCZKEM1_OnVerify);
-            this.axCZKEM1.OnAttTransactionEx -= new zkemkeeper._IZKEMEvents_OnAttTransactionExEventHandler(axCZKEM1_OnAttTransactionEx);
+            //this.axCZKEM1.OnAttTransactionEx -= new zkemkeeper._IZKEMEvents_OnAttTransactionExEventHandler(axCZKEM1_OnAttTransactionEx);
             this.axCZKEM1.OnFingerFeature -= new zkemkeeper._IZKEMEvents_OnFingerFeatureEventHandler(axCZKEM1_OnFingerFeature);
             this.axCZKEM1.OnDeleteTemplate -= new zkemkeeper._IZKEMEvents_OnDeleteTemplateEventHandler(axCZKEM1_OnDeleteTemplate);
             this.axCZKEM1.OnNewUser -= new zkemkeeper._IZKEMEvents_OnNewUserEventHandler(axCZKEM1_OnNewUser);
@@ -649,6 +702,8 @@ namespace Biometricos.Clases
             throw new NotImplementedException();
         }
 
+        public string path = Environment.CurrentDirectory;
+       
         //If your fingerprint(or your card) passes the verification,this event will be triggered,only for color device
         void axCZKEM1_OnAttTransactionEx(string EnrollNumber, int IsInValid, int AttState, int VerifyMethod, int Year, int Month, int Day, int Hour, int Minute, int Second, int WorkCode)
         {
@@ -656,7 +711,9 @@ namespace Biometricos.Clases
 
             gRealEventListBox.Items.Add("Verify OK.UserID=" + EnrollNumber + " isInvalid=" + IsInValid.ToString() + " state=" + AttState.ToString() + " verifystyle=" + VerifyMethod.ToString() + " time=" + time);
             //MessageBox.Show("Verify OK.UserID=" + EnrollNumber + " isInvalid=" + IsInValid.ToString() + " state=" + AttState.ToString() + " verifystyle=" + VerifyMethod.ToString() + " time=" + time);
-            throw new NotImplementedException();
+            Log oLog = new Log(path);
+            //oLog.Add("Verify OK.UserID = " + EnrollNumber + " isInvalid = " + IsInValid.ToString() + " state = " + AttState.ToString() + " verifystyle = " + VerifyMethod.ToString() + " time = " + time);
+           //throw new NotImplementedException();
         }
 
         //If your fingerprint(or your card) passes the verification,this event will be triggered,only for black%white device

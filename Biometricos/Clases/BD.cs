@@ -17,9 +17,11 @@ namespace Biometricos.Clases
     public class BD
     {
         DB2Connection con = new DB2Connection(ConfigurationManager.ConnectionStrings["ibmconex"].ConnectionString);
+        int? num_transac_max;
+        int rowsAffected = 0;
 
         #region BIOMETRICOS
-                
+
         public DataTable D_listado()
         {
             DB2Command cmd = new DB2Command("select * from v_listar_biometricos order by 1", con);
@@ -189,6 +191,57 @@ namespace Biometricos.Clases
                 return true;
             else
                 return false;
+        }
+
+        public void max_transac()
+        {
+            try
+            {
+                // Open a connection                                
+                con.Open();
+                // Create an SQL command
+                //DB2Command cmd = new DB2Command("SELECT MAX(reporte1.num_transac) FROM reporte1", con);
+                DB2Command cmd = new DB2Command("SELECT MAX(num_transac) FROM reporte1 where fecha>=(SELECT (TODAY - 1) FROM systables WHERE tabid = 1)", con);
+                num_transac_max = (int)cmd.ExecuteScalar();
+                // Close the connection
+                con.Close();
+                Console.ReadLine(); // Wait for a Return
+            }
+            catch (DB2Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                Console.ReadLine(); //Wait for a Return
+            }
+        }
+
+        public int D_InsertarRegistros(List<E_Usuario_Registros> usuario_registros)
+        {
+           //DB2Command cmd;
+            num_transac_max = num_transac_max + 1;
+            int result = 0;
+
+            foreach (var item in usuario_registros)
+            {
+                using (DB2Connection conex = new DB2Connection(ConfigurationManager.ConnectionStrings["ibmconex"].ConnectionString))
+                {
+                    conex.Open();
+                    using (var cmd = conex.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.Text;
+                        cmd.CommandText = "INSERT INTO reporte1 (fecha, hora, actividad,mensaje,num_inc,id_biometrico,num_transac) values (?, ?, ?, ?, ?, ?, ?)";
+                        cmd.Parameters.Add("@fecha", item.fecha);
+                        cmd.Parameters.Add("@hora", item.hora);
+                        cmd.Parameters.Add("@actividad", "0000000001");
+                        cmd.Parameters.Add("@mensaje", "1");
+                        cmd.Parameters.Add("@num_inc", item.nic);
+                        cmd.Parameters.Add("@id_biometrico", item.id_biometrico);
+                        cmd.Parameters.Add("@num_transac", num_transac_max);
+
+                        rowsAffected = cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            return result;
         }
 
         #endregion

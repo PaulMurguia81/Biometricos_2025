@@ -41,9 +41,13 @@
             this.pnlAccess = new System.Windows.Forms.Panel();
             this.pnlData = new System.Windows.Forms.Panel();
             this.pnlTerminal = new System.Windows.Forms.Panel();
+            this.pnlSubMenu = new System.Windows.Forms.Panel();
+            this.btnAddBiometricos = new System.Windows.Forms.Button();
+            this.btnPoleo = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.pnlMenuIzq.SuspendLayout();
+            this.pnlSubMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -70,7 +74,9 @@
             // 
             // pnlMenuIzq
             // 
+            this.pnlMenuIzq.AutoScroll = true;
             this.pnlMenuIzq.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(133)))), ((int)(((byte)(136)))));
+            this.pnlMenuIzq.Controls.Add(this.pnlSubMenu);
             this.pnlMenuIzq.Controls.Add(this.btnConsultas);
             this.pnlMenuIzq.Controls.Add(this.btnUsuarios);
             this.pnlMenuIzq.Controls.Add(this.btnBiometricos);
@@ -89,7 +95,7 @@
             this.btnConsultas.ForeColor = System.Drawing.Color.White;
             this.btnConsultas.Image = ((System.Drawing.Image)(resources.GetObject("btnConsultas.Image")));
             this.btnConsultas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConsultas.Location = new System.Drawing.Point(3, 156);
+            this.btnConsultas.Location = new System.Drawing.Point(3, 242);
             this.btnConsultas.Name = "btnConsultas";
             this.btnConsultas.Size = new System.Drawing.Size(194, 69);
             this.btnConsultas.TabIndex = 2;
@@ -107,7 +113,7 @@
             this.btnUsuarios.ForeColor = System.Drawing.Color.White;
             this.btnUsuarios.Image = ((System.Drawing.Image)(resources.GetObject("btnUsuarios.Image")));
             this.btnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUsuarios.Location = new System.Drawing.Point(3, 81);
+            this.btnUsuarios.Location = new System.Drawing.Point(3, 171);
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Size = new System.Drawing.Size(194, 69);
             this.btnUsuarios.TabIndex = 1;
@@ -119,15 +125,16 @@
             // btnBiometricos
             // 
             this.btnBiometricos.BackColor = System.Drawing.Color.Transparent;
+            this.btnBiometricos.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnBiometricos.FlatAppearance.BorderSize = 0;
             this.btnBiometricos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBiometricos.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBiometricos.ForeColor = System.Drawing.Color.White;
             this.btnBiometricos.Image = ((System.Drawing.Image)(resources.GetObject("btnBiometricos.Image")));
             this.btnBiometricos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBiometricos.Location = new System.Drawing.Point(3, 6);
+            this.btnBiometricos.Location = new System.Drawing.Point(0, 0);
             this.btnBiometricos.Name = "btnBiometricos";
-            this.btnBiometricos.Size = new System.Drawing.Size(194, 69);
+            this.btnBiometricos.Size = new System.Drawing.Size(200, 69);
             this.btnBiometricos.TabIndex = 0;
             this.btnBiometricos.Text = "             Biometricos";
             this.btnBiometricos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -177,6 +184,56 @@
             this.pnlTerminal.Size = new System.Drawing.Size(16, 17);
             this.pnlTerminal.TabIndex = 7;
             // 
+            // pnlSubMenu
+            // 
+            this.pnlSubMenu.Controls.Add(this.btnPoleo);
+            this.pnlSubMenu.Controls.Add(this.btnAddBiometricos);
+            this.pnlSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlSubMenu.Location = new System.Drawing.Point(0, 69);
+            this.pnlSubMenu.Name = "pnlSubMenu";
+            this.pnlSubMenu.Size = new System.Drawing.Size(200, 96);
+            this.pnlSubMenu.TabIndex = 3;
+            // 
+            // btnAddBiometricos
+            // 
+            this.btnAddBiometricos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(88)))), ((int)(((byte)(90)))));
+            this.btnAddBiometricos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAddBiometricos.FlatAppearance.BorderSize = 0;
+            this.btnAddBiometricos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddBiometricos.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddBiometricos.ForeColor = System.Drawing.Color.White;
+            this.btnAddBiometricos.Image = ((System.Drawing.Image)(resources.GetObject("btnAddBiometricos.Image")));
+            this.btnAddBiometricos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddBiometricos.Location = new System.Drawing.Point(0, 0);
+            this.btnAddBiometricos.Name = "btnAddBiometricos";
+            this.btnAddBiometricos.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
+            this.btnAddBiometricos.Size = new System.Drawing.Size(200, 45);
+            this.btnAddBiometricos.TabIndex = 4;
+            this.btnAddBiometricos.Text = "Mant. Biometricos";
+            this.btnAddBiometricos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddBiometricos.UseVisualStyleBackColor = false;
+            this.btnAddBiometricos.Click += new System.EventHandler(this.btnAddBiometricos_Click);
+            // 
+            // btnPoleo
+            // 
+            this.btnPoleo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(88)))), ((int)(((byte)(90)))));
+            this.btnPoleo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnPoleo.FlatAppearance.BorderSize = 0;
+            this.btnPoleo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPoleo.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPoleo.ForeColor = System.Drawing.Color.White;
+            this.btnPoleo.Image = ((System.Drawing.Image)(resources.GetObject("btnPoleo.Image")));
+            this.btnPoleo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPoleo.Location = new System.Drawing.Point(0, 45);
+            this.btnPoleo.Name = "btnPoleo";
+            this.btnPoleo.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
+            this.btnPoleo.Size = new System.Drawing.Size(200, 45);
+            this.btnPoleo.TabIndex = 5;
+            this.btnPoleo.Text = "Poleo Biometricos";
+            this.btnPoleo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPoleo.UseVisualStyleBackColor = false;
+            this.btnPoleo.Click += new System.EventHandler(this.btnPoleo_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -199,6 +256,7 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.pnlMenuIzq.ResumeLayout(false);
+            this.pnlSubMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -217,6 +275,9 @@
         private System.Windows.Forms.Panel pnlTerminal;
         private System.Windows.Forms.Button btnUsuarios;
         private System.Windows.Forms.Button btnConsultas;
+        private System.Windows.Forms.Panel pnlSubMenu;
+        private System.Windows.Forms.Button btnAddBiometricos;
+        private System.Windows.Forms.Button btnPoleo;
     }
 }
 

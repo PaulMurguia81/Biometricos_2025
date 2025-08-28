@@ -36,8 +36,10 @@
     <Reference Include="DevExpress.Data.Desktop.v22.1, Version=22.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.v22.1, Version=22.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Drawing.v22.1, Version=22.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Images.v22.1, Version=22.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v22.1.Core, Version=22.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v22.1, Version=22.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v22.1, Version=22.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v22.1, Version=22.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraGrid.v22.1, Version=22.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v22.1, Version=22.1.13.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -55,6 +57,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -71,6 +74,8 @@
     <Compile Include="Clases\BD.cs" />
     <Compile Include="Clases\E_Biometricos.cs" />
     <Compile Include="Clases\E_Usuarios.cs" />
+    <Compile Include="Clases\E_Usuario_Registros.cs" />
+    <Compile Include="Clases\Log.cs" />
     <Compile Include="Clases\SDKHelper.cs" />
     <Compile Include="Clases\SearchforUSBCom.cs" />
     <Compile Include="Form1.cs">
@@ -90,6 +95,12 @@
     </Compile>
     <Compile Include="Forms\Consulta.Designer.cs">
       <DependentUpon>Consulta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Poleo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Poleo.Designer.cs">
+      <DependentUpon>Poleo.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\TerminalForm.cs">
       <SubType>Form</SubType>
@@ -113,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Consulta.resx">
       <DependentUpon>Consulta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Poleo.resx">
+      <DependentUpon>Poleo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TerminalForm.resx">
       <DependentUpon>TerminalForm.cs</DependentUpon>

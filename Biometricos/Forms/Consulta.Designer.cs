@@ -52,6 +52,7 @@
             this.btnBorrar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.btnExcel = new System.Windows.Forms.Button();
+            this.lbRTOutputInfo = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.gc_Attlog)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gv_Attlog)).BeginInit();
             this.SuspendLayout();
@@ -324,12 +325,22 @@
             this.btnExcel.UseVisualStyleBackColor = false;
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
+            // lbRTOutputInfo
+            // 
+            this.lbRTOutputInfo.FormattingEnabled = true;
+            this.lbRTOutputInfo.Location = new System.Drawing.Point(611, 5);
+            this.lbRTOutputInfo.Name = "lbRTOutputInfo";
+            this.lbRTOutputInfo.Size = new System.Drawing.Size(252, 17);
+            this.lbRTOutputInfo.TabIndex = 1059;
+            this.lbRTOutputInfo.Visible = false;
+            // 
             // Consulta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1548, 582);
+            this.Controls.Add(this.lbRTOutputInfo);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.label4);
@@ -387,5 +398,6 @@
         private System.Windows.Forms.Button btnBorrar;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnExcel;
+        private System.Windows.Forms.ListBox lbRTOutputInfo;
     }
 }
