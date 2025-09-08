@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Poleo));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.gbBiomet = new System.Windows.Forms.GroupBox();
+            this.lbSysOutputInfo = new System.Windows.Forms.ListBox();
             this.checkBox_timePeriod = new System.Windows.Forms.CheckBox();
             this.stime_log = new System.Windows.Forms.DateTimePicker();
             this.label15 = new System.Windows.Forms.Label();
@@ -40,7 +41,6 @@
             this.btnPoleoInd = new System.Windows.Forms.Button();
             this.btnPoleoG = new System.Windows.Forms.Button();
             this.label30 = new System.Windows.Forms.Label();
-            this.lbSysOutputInfo = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.gbBiomet.SuspendLayout();
             this.SuspendLayout();
@@ -78,6 +78,15 @@
             this.gbBiomet.Size = new System.Drawing.Size(1545, 148);
             this.gbBiomet.TabIndex = 1030;
             this.gbBiomet.TabStop = false;
+            // 
+            // lbSysOutputInfo
+            // 
+            this.lbSysOutputInfo.FormattingEnabled = true;
+            this.lbSysOutputInfo.Location = new System.Drawing.Point(17, 12);
+            this.lbSysOutputInfo.Name = "lbSysOutputInfo";
+            this.lbSysOutputInfo.Size = new System.Drawing.Size(252, 17);
+            this.lbSysOutputInfo.TabIndex = 1050;
+            this.lbSysOutputInfo.Visible = false;
             // 
             // checkBox_timePeriod
             // 
@@ -143,6 +152,7 @@
             this.label46.Size = new System.Drawing.Size(124, 19);
             this.label46.TabIndex = 977;
             this.label46.Text = "Polo Individual";
+            this.label46.Visible = false;
             // 
             // btnPoleoInd
             // 
@@ -153,6 +163,7 @@
             this.btnPoleoInd.Size = new System.Drawing.Size(71, 61);
             this.btnPoleoInd.TabIndex = 976;
             this.btnPoleoInd.UseVisualStyleBackColor = false;
+            this.btnPoleoInd.Visible = false;
             // 
             // btnPoleoG
             // 
@@ -175,15 +186,6 @@
             this.label30.Size = new System.Drawing.Size(109, 19);
             this.label30.TabIndex = 963;
             this.label30.Text = "Poleo Global";
-            // 
-            // lbSysOutputInfo
-            // 
-            this.lbSysOutputInfo.FormattingEnabled = true;
-            this.lbSysOutputInfo.Location = new System.Drawing.Point(17, 12);
-            this.lbSysOutputInfo.Name = "lbSysOutputInfo";
-            this.lbSysOutputInfo.Size = new System.Drawing.Size(252, 17);
-            this.lbSysOutputInfo.TabIndex = 1050;
-            this.lbSysOutputInfo.Visible = false;
             // 
             // Poleo
             // 
