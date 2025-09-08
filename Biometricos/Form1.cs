@@ -17,14 +17,17 @@ namespace Biometricos
         UsersForm UserMng;
         Consulta consulta;
         Poleo poleo;
+        Transfer transfer;
         public Form1()
         {
             InitializeComponent();
             customizeDesign();
             btnUsuarios.Location = new Point(0, 69);
             btnConsultas.Location = new Point(0, 130);
+            btnTransfer.Location= new Point(0, 191);
         }
 
+        #region MENU DESPLEGABLE
         public void customizeDesign()
         {
             pnlSubMenu.Visible=false;
@@ -45,6 +48,7 @@ namespace Biometricos
                 submenu.Size = new Size(0, 0);
                 btnUsuarios.Location = new Point(0, 69);
                 btnConsultas.Location = new Point(0, 130);
+                btnTransfer.Location = new Point(0, 191);
             }
         }
 
@@ -57,6 +61,7 @@ namespace Biometricos
                 submenu.Size=new Size(200,96);
                 btnUsuarios.Location = new Point(3, 171);
                 btnConsultas.Location = new Point(3,242);
+                btnTransfer.Location = new Point(3, 314);
             }
             else
             {
@@ -64,9 +69,12 @@ namespace Biometricos
                 submenu.Size = new Size(0,0);
                 btnUsuarios.Location = new Point(0, 69);
                 btnConsultas.Location = new Point(0, 130);
+                btnTransfer.Location= new Point(0, 191);        
             }                
         }
-            
+        
+        #endregion
+
         private void btnBiometricos_Click(object sender, EventArgs e)
         {
             showSubMenu(pnlSubMenu);
@@ -178,6 +186,41 @@ namespace Biometricos
             else
             {
                 
+            }
+        }
+
+        private void btnTransfer_Click(object sender, EventArgs e)
+        {
+            showSubMenu1(pnlSubMenu);
+            pnlTerminal.Visible = false;
+            pnlUser.Visible = false;
+            pnlPersonalize.Visible = false;
+            pnlData.Visible = false;
+            pnlAccess.Visible = true;
+            pnlOther.Visible = false;
+            pnlAccess.Dock = DockStyle.Fill;
+
+            if (pnlAccess.Controls.Count == 0)
+            {
+                transfer = new Transfer(this);
+                transfer.TopLevel = false;
+                this.pnlAccess.Controls.Add(transfer);
+                transfer.Show();
+                transfer.Dock = DockStyle.Fill;
+            }
+            else
+            {
+                if (!transfer.cbBiometricos.Enabled)
+                    transfer.btnConnect.PerformClick();
+                
+                if (!transfer.cbBiometricos1.Enabled)
+                    transfer.btnConnectUP.PerformClick();
+
+                transfer.lvUserInfo2.Items.Clear();
+                transfer.lstBiometric2.Items.Clear();
+                transfer.tbBuscar.Text = "";
+                transfer.tbBuscarPalmas.Text = "";
+
             }
         }
     }

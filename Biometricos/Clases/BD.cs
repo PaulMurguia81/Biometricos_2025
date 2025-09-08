@@ -65,6 +65,38 @@ namespace Biometricos.Clases
             return result;
         }
 
+        public int D_InsertarBiometricoTablaAnterior(E_Biometricos e_Biometricos)
+        {
+            int result = 0;
+            DB2Command cmd = new DB2Command("INSERTAR_BIOMETRICO_TABLA_ANTERIOR", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@id_biometrico", e_Biometricos.id_biometrico);
+            cmd.Parameters.Add("@ip_biometrico", e_Biometricos.ip_biometrico);
+            cmd.Parameters.Add("@num_serie", e_Biometricos.num_serie);
+            cmd.Parameters.Add("@municipio", e_Biometricos.municipio);
+            cmd.Parameters.Add("@ubicacion", e_Biometricos.ubicacion);
+            cmd.Parameters.Add("@status", e_Biometricos.status);
+            cmd.Parameters.Add("@descripcion", e_Biometricos.descripcion);
+            cmd.Parameters.Add("@status_inc", e_Biometricos.status_inc);
+            cmd.Parameters.Add("@tabla", e_Biometricos.tabla);
+
+            try
+            {
+                con.Open();
+                result = cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al Guardar el Biometrico en la Base de Datos");
+            }
+            finally
+            {
+                con.Close();
+                cmd.Dispose();
+            }
+            return result;
+        }
+
         public int D_BorrarBiometrico(E_Biometricos e_Biometricos)
         {
             int result = 0;
@@ -89,11 +121,68 @@ namespace Biometricos.Clases
             return result;
         }
 
+        public int D_BorrarBiometricoTablaAnterior(E_Biometricos e_Biometricos)
+        {
+            int result = 0;
+
+            DB2Command cmd = new DB2Command("DELETE from config_biometricos where id_biometrico='" + e_Biometricos.id_biometrico + "'", con);
+            cmd.CommandType = CommandType.Text;
+
+            try
+            {
+                con.Open();
+                result = cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al Modificar el Biometrico en la Base de Datos");
+            }
+            finally
+            {
+                con.Close();
+                cmd.Dispose();
+            }
+            return result;
+        }
+
         public int D_ActualizarBiometrico(E_Biometricos e_Biometricos)
         {
             int result = 0;
 
             DB2Command cmd = new DB2Command("UPDATE config_biometricosn SET id_biometrico=?,ip_biometrico=?,num_serie=?,municipio=?,ubicacion=?,status=?,descripcion=?,status_inc=?,tabla=? where id_biometrico='" + e_Biometricos.id_biometrico + "'", con);
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.Add("@id_biometrico", e_Biometricos.id_biometrico);
+            cmd.Parameters.Add("@ip_biometrico", e_Biometricos.ip_biometrico);
+            cmd.Parameters.Add("@num_serie", e_Biometricos.num_serie);
+            cmd.Parameters.Add("@municipio", e_Biometricos.municipio);
+            cmd.Parameters.Add("@ubicacion", e_Biometricos.ubicacion);
+            cmd.Parameters.Add("@status", e_Biometricos.status);
+            cmd.Parameters.Add("@descripcion", e_Biometricos.descripcion);
+            cmd.Parameters.Add("@status_inc", e_Biometricos.status_inc);
+            cmd.Parameters.Add("@tabla", e_Biometricos.tabla);
+
+            try
+            {
+                con.Open();
+                result = cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error al Modificar el Biometrico en la Base de Datos");
+            }
+            finally
+            {
+                con.Close();
+                cmd.Dispose();
+            }
+            return result;
+        }
+
+        public int D_ActualizarBiometricoTablaAnterior(E_Biometricos e_Biometricos)
+        {
+            int result = 0;
+
+            DB2Command cmd = new DB2Command("UPDATE config_biometricos SET id_biometrico=?,ip_biometrico=?,num_serie=?,municipio=?,ubicacion=?,status=?,descripcion=?,status_inc=?,tabla=? where id_biometrico='" + e_Biometricos.id_biometrico + "'", con);
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.Add("@id_biometrico", e_Biometricos.id_biometrico);
             cmd.Parameters.Add("@ip_biometrico", e_Biometricos.ip_biometrico);

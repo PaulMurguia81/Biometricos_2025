@@ -130,9 +130,11 @@ namespace Biometricos.Forms
                 DialogResult dr = MessageBox.Show("Desea eliminar el Biometrico seleccionado?", "Borrar Dispositivo", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                 if (dr == DialogResult.Yes)
                 {
-                    int nGuardar = -1;
+                    int nGuardar = -1, nGuardar1 = -1;
+
                     TextboxAObjeto();
                     nGuardar = bd.D_BorrarBiometrico(objEntidad);
+                    nGuardar1 = bd.D_BorrarBiometricoTablaAnterior(objEntidad);
 
                     if (nGuardar != -1)
                         MessageBox.Show("El Biometrico fue eliminado");
@@ -178,11 +180,12 @@ namespace Biometricos.Forms
             bool x = validarTextBox();
             if (x)
             {
-                int nGuardar = -1;
+                int nGuardar = -1, nGuardar1 = -1;
 
                 TextboxAObjeto();
 
                 nGuardar = bd.D_ActualizarBiometrico(objEntidad);
+                nGuardar1 = bd.D_ActualizarBiometricoTablaAnterior(objEntidad); 
 
                 if (nGuardar != -1)
                     MessageBox.Show("El Biometrico fue modificado con Exito");
@@ -223,11 +226,12 @@ namespace Biometricos.Forms
             bool x = validarTextBox();
             if (x)
             {
-                int nGuardar = -1;
+                int nGuardar = -1,nGuardar1=-1;
 
                 TextboxAObjeto();
 
                 nGuardar = bd.D_InsertarBiometrico(objEntidad);
+                nGuardar1 = bd.D_InsertarBiometricoTablaAnterior(objEntidad);
 
                 if (nGuardar != -1)
                     MessageBox.Show("Error al guardar el biometrico en la BD");

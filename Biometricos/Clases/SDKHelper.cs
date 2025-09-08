@@ -22,6 +22,7 @@ namespace Biometricos.Clases
         public List<string> biometricTypes = new List<string>();
 
         private static bool bIsConnected = false;//the boolean value identifies whether the device is connected
+        private static bool bIsConnected2 = false;//the boolean value identifies whether the device is connected
         private static int iMachineNumber = 1;
         private static int idwErrorCode = 0;
         private static int iDeviceTpye = 1;
@@ -156,6 +157,12 @@ namespace Biometricos.Clases
             //connected = state;
         }
 
+        public void SetConnectState2(bool state)
+        {
+            bIsConnected2 = state;
+            //connected = state;
+        }
+
         public int GetMachineNumber()
         {
             return iMachineNumber;
@@ -256,6 +263,59 @@ namespace Biometricos.Clases
             if (axCZKEM1.Connect_Net(ip, Convert.ToInt32(port)) == true)
             {
                 SetConnectState(true);
+                sta_RegRealTime(lblOutputInfo);
+                lblOutputInfo.Items.Add("Connect with device !");
+
+                //get Biotype
+                sta_getBiometricType();
+
+                return 1;
+            }
+            else
+            {
+                axCZKEM1.GetLastError(ref idwErrorCode);
+                lblOutputInfo.Items.Add("*Unable to connect the device,ErrorCode=" + idwErrorCode.ToString());
+                return idwErrorCode;
+            }
+        }
+
+        public int sta_ConnectTCP2(ListBox lblOutputInfo, string ip, string port, string commKey)
+        {
+            if (ip == "" || port == "" || commKey == "")
+            {
+                lblOutputInfo.Items.Add("*Name, IP, Port or Commkey cannot be null !");
+                return -1;// ip or port is null
+            }
+
+            if (Convert.ToInt32(port) <= 0 || Convert.ToInt32(port) > 65535)
+            {
+                lblOutputInfo.Items.Add("*Port illegal!");
+                return -1;
+            }
+
+            if (Convert.ToInt32(commKey) < 0 || Convert.ToInt32(commKey) > 999999)
+            {
+                lblOutputInfo.Items.Add("*CommKey illegal!");
+                return -1;
+            }
+
+            int idwErrorCode = 0;
+
+            axCZKEM1.SetCommPassword(Convert.ToInt32(commKey));
+
+            if (bIsConnected2 == true)
+            {
+                axCZKEM1.Disconnect();
+                sta_UnRegRealTime();
+                SetConnectState2(false);
+                lblOutputInfo.Items.Add("Disconnect with device !");
+                //connected = false;
+                return -2; //disconnect
+            }
+
+            if (axCZKEM1.Connect_Net(ip, Convert.ToInt32(port)) == true)
+            {
+                SetConnectState2(true);
                 sta_RegRealTime(lblOutputInfo);
                 lblOutputInfo.Items.Add("Connect with device !");
 
@@ -1470,6 +1530,116 @@ namespace Biometricos.Clases
 
         #region UesrFP
         public int sta_GetAllUserFPInfo(ListBox lblOutputInfo, ProgressBar prgSta, ListView lvUserInfo)
+        {
+            if (GetConnectState() == false)
+            {
+                lblOutputInfo.Items.Add("*Please connect first!");
+                return -1024;
+            }
+
+            string sEnrollNumber = "";
+            bool bEnabled = false;
+            string sName = "";
+            string sPassword = "";
+            int iPrivilege = 0;
+            string sFPTmpData = "";
+            string sCardnumber = "";
+            int idwFingerIndex = 0;
+            int iFlag = 0;
+            int iFPTmpLength = 0;
+            int i = 0;
+            int num = 0;
+            int iFpCount = 0;
+            int index = 0;
+            int xx = 1;
+
+            lvUserInfo.Items.Clear();
+
+            axCZKEM1.EnableDevice(iMachineNumber, false);
+            axCZKEM1.ReadAllUserID(iMachineNumber);//read all the user information to the memory  except fingerprint Templates
+            axCZKEM1.ReadAllTemplate(iMachineNumber);//read all the users' fingerprint templates to the memory
+            while (axCZKEM1.SSR_GetAllUserInfo(iMachineNumber, out sEnrollNumber, out sName, out sPassword, out iPrivilege, out bEnabled))//get all the users' information from the memory
+            {
+                axCZKEM1.GetStrCardNumber(out sCardnumber);//get the card number from the memory             
+
+                lvUserInfo.Items.Add(sEnrollNumber);
+
+                if (bEnabled == true)
+                {
+                    lvUserInfo.Items[index].SubItems.Add("true");
+                }
+                else
+                {
+                    lvUserInfo.Items[index].SubItems.Add("false");
+                }
+
+                lvUserInfo.Items[index].SubItems.Add(sName);
+                lvUserInfo.Items[index].SubItems.Add(sCardnumber);
+                lvUserInfo.Items[index].SubItems.Add(String.Format("*****", sPassword));
+
+                i = 0;
+                xx = 1;
+                for (idwFingerIndex = 0; idwFingerIndex < 10; idwFingerIndex++)
+                {
+                    if (axCZKEM1.GetUserTmpExStr(iMachineNumber, sEnrollNumber, idwFingerIndex, out iFlag, out sFPTmpData, out iFPTmpLength))//get the corresponding templates string and length from the memory
+                    {
+                        if (xx == 1)
+                        {
+                            lvUserInfo.Items[index].SubItems.Add(idwFingerIndex.ToString());
+                            lvUserInfo.Items[index].SubItems.Add(iFlag.ToString());
+                            lvUserInfo.Items[index].SubItems.Add(sFPTmpData);
+                            lvUserInfo.Items[index].SubItems.Add(iPrivilege.ToString());
+                        }
+                        else
+                        {
+                            lvUserInfo.Items.Add(sEnrollNumber);
+                            if (bEnabled == true)
+                            {
+                                lvUserInfo.Items[index].SubItems.Add("true");
+                            }
+                            else
+                            {
+                                lvUserInfo.Items[index].SubItems.Add("false");
+                            }
+
+                            lvUserInfo.Items[index].SubItems.Add(sName);
+                            lvUserInfo.Items[index].SubItems.Add(sCardnumber);
+                            lvUserInfo.Items[index].SubItems.Add(sPassword);
+                            lvUserInfo.Items[index].SubItems.Add(idwFingerIndex.ToString());
+                            lvUserInfo.Items[index].SubItems.Add(iFlag.ToString());
+                            lvUserInfo.Items[index].SubItems.Add(sFPTmpData);
+                            lvUserInfo.Items[index].SubItems.Add(iPrivilege.ToString());
+
+                        }
+
+                        index++;
+                        xx = 0;
+                        iFpCount++;
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                }
+
+                if (i == 10)
+                {
+                    lvUserInfo.Items[index].SubItems.Add("");
+                    lvUserInfo.Items[index].SubItems.Add("");
+                    lvUserInfo.Items[index].SubItems.Add("");
+                    lvUserInfo.Items[index].SubItems.Add(iPrivilege.ToString());
+                    index++;
+                }
+                num++;
+                prgSta.Value = num % 100;
+            }
+            prgSta.Value = 100;
+            lblOutputInfo.Items.Add("Download user count : " + num.ToString() + " ,  fingerprint count : " + iFpCount.ToString());
+            axCZKEM1.EnableDevice(iMachineNumber, true);
+            return 1;
+        }
+
+        public int sta_GetAllUserFPInfo1(ListBox lblOutputInfo, ProgressBar prgSta, ListView lvUserInfo)
         {
             if (GetConnectState() == false)
             {
