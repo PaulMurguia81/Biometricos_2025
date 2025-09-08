@@ -223,5 +223,30 @@ namespace Biometricos
 
             }
         }
+
+        private void abrirControlBiometToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Show(); // Show the form
+            this.WindowState = FormWindowState.Maximized; // Restore to normal state
+            notifyIcon1.Visible = false; // Hide the NotifyIcon
+            //this.Show();
+        }
+
+        private void cerrarControlBiometToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide(); // Hide the form from the taskbar
+            notifyIcon1.Visible = true; // Show the NotifyIcon in the system tray
+            notifyIcon1.ShowBalloonTip(3000, "Aplicacion Minimizada", "La aplicacion esta trabajando en segundo plano.", ToolTipIcon.Info); // Optional: show a balloon tip
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.Hide(); // Hide the form from the taskbar
+                notifyIcon1.Visible = true; // Show the NotifyIcon in the system tray
+                notifyIcon1.ShowBalloonTip(3000, "Aplicacion Minimizada", "La aplicacion esta trabajando en segundo plano.", ToolTipIcon.Info); // Optional: show a balloon tip
+            }
+        }
     }
 }

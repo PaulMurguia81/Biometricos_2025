@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pnlMenuIzq = new System.Windows.Forms.Panel();
+            this.btnTransfer = new System.Windows.Forms.Button();
             this.pnlSubMenu = new System.Windows.Forms.Panel();
             this.btnPoleo = new System.Windows.Forms.Button();
             this.btnAddBiometricos = new System.Windows.Forms.Button();
@@ -44,11 +46,15 @@
             this.pnlAccess = new System.Windows.Forms.Panel();
             this.pnlData = new System.Windows.Forms.Panel();
             this.pnlTerminal = new System.Windows.Forms.Panel();
-            this.btnTransfer = new System.Windows.Forms.Button();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.abrirControlBiometToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cerrarControlBiometToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.pnlMenuIzq.SuspendLayout();
             this.pnlSubMenu.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -87,6 +93,24 @@
             this.pnlMenuIzq.Name = "pnlMenuIzq";
             this.pnlMenuIzq.Size = new System.Drawing.Size(200, 541);
             this.pnlMenuIzq.TabIndex = 1;
+            // 
+            // btnTransfer
+            // 
+            this.btnTransfer.BackColor = System.Drawing.Color.Transparent;
+            this.btnTransfer.FlatAppearance.BorderSize = 0;
+            this.btnTransfer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTransfer.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTransfer.ForeColor = System.Drawing.Color.White;
+            this.btnTransfer.Image = ((System.Drawing.Image)(resources.GetObject("btnTransfer.Image")));
+            this.btnTransfer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTransfer.Location = new System.Drawing.Point(3, 314);
+            this.btnTransfer.Name = "btnTransfer";
+            this.btnTransfer.Size = new System.Drawing.Size(194, 69);
+            this.btnTransfer.TabIndex = 4;
+            this.btnTransfer.Text = "Transf. Huella";
+            this.btnTransfer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTransfer.UseVisualStyleBackColor = false;
+            this.btnTransfer.Click += new System.EventHandler(this.btnTransfer_Click);
             // 
             // pnlSubMenu
             // 
@@ -236,23 +260,34 @@
             this.pnlTerminal.Size = new System.Drawing.Size(16, 17);
             this.pnlTerminal.TabIndex = 7;
             // 
-            // btnTransfer
+            // notifyIcon1
             // 
-            this.btnTransfer.BackColor = System.Drawing.Color.Transparent;
-            this.btnTransfer.FlatAppearance.BorderSize = 0;
-            this.btnTransfer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTransfer.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTransfer.ForeColor = System.Drawing.Color.White;
-            this.btnTransfer.Image = ((System.Drawing.Image)(resources.GetObject("btnTransfer.Image")));
-            this.btnTransfer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTransfer.Location = new System.Drawing.Point(3, 314);
-            this.btnTransfer.Name = "btnTransfer";
-            this.btnTransfer.Size = new System.Drawing.Size(194, 69);
-            this.btnTransfer.TabIndex = 4;
-            this.btnTransfer.Text = "Transf. Huella";
-            this.btnTransfer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTransfer.UseVisualStyleBackColor = false;
-            this.btnTransfer.Click += new System.EventHandler(this.btnTransfer_Click);
+            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "Abrir Control Biometrico";
+            this.notifyIcon1.Visible = true;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.abrirControlBiometToolStripMenuItem,
+            this.cerrarControlBiometToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 70);
+            // 
+            // abrirControlBiometToolStripMenuItem
+            // 
+            this.abrirControlBiometToolStripMenuItem.Name = "abrirControlBiometToolStripMenuItem";
+            this.abrirControlBiometToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.abrirControlBiometToolStripMenuItem.Text = "Abrir Control Biometrico";
+            this.abrirControlBiometToolStripMenuItem.Click += new System.EventHandler(this.abrirControlBiometToolStripMenuItem_Click);
+            // 
+            // cerrarControlBiometToolStripMenuItem
+            // 
+            this.cerrarControlBiometToolStripMenuItem.Name = "cerrarControlBiometToolStripMenuItem";
+            this.cerrarControlBiometToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.cerrarControlBiometToolStripMenuItem.Text = "Cerrar Control Biometrico";
+            this.cerrarControlBiometToolStripMenuItem.Click += new System.EventHandler(this.cerrarControlBiometToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -273,10 +308,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "     Principal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.pnlMenuIzq.ResumeLayout(false);
             this.pnlSubMenu.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -299,6 +336,10 @@
         private System.Windows.Forms.Button btnAddBiometricos;
         private System.Windows.Forms.Button btnPoleo;
         private System.Windows.Forms.Button btnTransfer;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem abrirControlBiometToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cerrarControlBiometToolStripMenuItem;
     }
 }
 
