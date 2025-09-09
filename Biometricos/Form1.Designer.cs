@@ -273,7 +273,7 @@
             this.abrirControlBiometToolStripMenuItem,
             this.cerrarControlBiometToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(211, 48);
             // 
             // abrirControlBiometToolStripMenuItem
             // 
@@ -308,6 +308,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "     Principal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

@@ -248,5 +248,10 @@ namespace Biometricos
                 notifyIcon1.ShowBalloonTip(3000, "Aplicacion Minimizada", "La aplicacion esta trabajando en segundo plano.", ToolTipIcon.Info); // Optional: show a balloon tip
             }
         }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

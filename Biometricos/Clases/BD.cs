@@ -1,4 +1,6 @@
-﻿using DevExpress.Xpo.DB.Helpers;
+﻿using DevExpress.Entity.Model.Metadata;
+using DevExpress.Xpo.DB.Helpers;
+using DevExpress.XtraPrinting;
 using IBM.Data.DB2;
 using System;
 using System.Collections.Generic;
@@ -8,9 +10,12 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Helpers;
 using System.Windows.Forms;
+using static DevExpress.XtraEditors.Mask.MaskSettings;
 
 namespace Biometricos.Clases
 {
@@ -19,6 +24,7 @@ namespace Biometricos.Clases
         DB2Connection con = new DB2Connection(ConfigurationManager.ConnectionStrings["ibmconex"].ConnectionString);
         int? num_transac_max;
         int rowsAffected = 0;
+        internal static string pimienta = "omhLrHZ9JXkEheMsROduHKUo+uxvHTddEec/hclqx3Y=";
 
         #region BIOMETRICOS
 
@@ -407,8 +413,100 @@ namespace Biometricos.Clases
             return dt;
         }
 
+        public bool buscarEmpleado(string user, string pass)
+        {
+            VerifyConnection();
 
+            if (VerifyConnection())
+            {
+                if (UsuarioAcceso(user,pass))
+                    return true;                
+                else                
+                    return false;                    
+            }
+            else
+            {
+                MessageBox.Show("No hay Conexion con el Servidor, contacte al Departamento de Informatica");
+                return false;
+            }
+        }
 
+        public bool VerifyConnection()
+        {
+
+            string connetionString = null;
+            DB2Connection cnn;
+            connetionString = ConfigurationManager.ConnectionStrings["ibmconex"].ConnectionString;
+
+            cnn = new DB2Connection(connetionString);
+            try
+            {
+                cnn.Open();
+                cnn.Close();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool UsuarioAcceso(string user, string pass)
+        {
+            using (DB2Connection MyConn = new DB2Connection())
+            {
+                try
+                {
+                    DB2Connection conn = new DB2Connection(ConfigurationManager.ConnectionStrings["ibmconex"].ConnectionString);
+                    conn.Open();                    
+                    DB2Command cmd = new DB2Command("select first 1 * from biometrico_acceso where activo='t' and nombreusuario='" + user + "'", conn);
+                    DB2DataReader reader = cmd.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            if (reader.GetValue(1) != DBNull.Value)
+                            {
+                                string contra = reader.GetString(3);
+
+                                if (CompararClave(contra, pass, "", pimienta))
+                                    return true;
+                                else
+                                    return false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    conn.Close();
+                    Console.ReadLine();
+
+                    return true;
+                }
+                catch (DB2Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    Console.ReadLine();
+
+                    return false;
+                }
+            }
+        }
+
+        public static bool CompararClave(string clavedigerida, string clave, string sal, string pimienta)
+        {
+            try
+            {
+                return Crypto.VerifyHashedPassword(clavedigerida, clave + sal + pimienta);
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         #endregion
     }
