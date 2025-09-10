@@ -85,7 +85,7 @@
             this.label2.Location = new System.Drawing.Point(58, 131);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(133, 34);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 5;
             this.label2.Text = "Usuario:";
             // 
             // tbUser
@@ -119,7 +119,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(133)))), ((int)(((byte)(136)))));
-            this.label3.Location = new System.Drawing.Point(6, 216);
+            this.label3.Location = new System.Drawing.Point(6, 212);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(185, 34);
             this.label3.TabIndex = 6;
@@ -134,7 +134,8 @@
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(264, 37);
-            this.tbPassword.TabIndex = 5;
+            this.tbPassword.TabIndex = 2;
+            this.tbPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPassword_KeyPress);
             // 
             // btnEntrar
             // 

@@ -29,6 +29,11 @@ namespace Biometricos.Forms
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
+            Entrar();
+        }
+
+        public void Entrar()
+        {
             if (string.IsNullOrWhiteSpace(tbUser.Text) || string.IsNullOrWhiteSpace(tbPassword.Text))
             {
                 MessageBox.Show("Debe capturar usuario y contraseña", "Error");
@@ -50,7 +55,7 @@ namespace Biometricos.Forms
                     tbUser.Text = "";
                     tbPassword.Text = "";
                     tbUser.Focus();
-                }       
+                }
             }
             catch (Exception ex)
             {
@@ -79,16 +84,24 @@ namespace Biometricos.Forms
 
         private void Login_Load(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.RememberMe==true)
+            if (Properties.Settings.Default.RememberMe == true)
             {
                 tbUser.Text= Properties.Settings.Default.Username ;
                 cbRecordarUsuario.Checked = Properties.Settings.Default.RememberMe;
+                tbPassword.Select();
             }
             else
             {
                 tbUser.Text = "";
                 cbRecordarUsuario.Checked = false;
+                tbUser.Focus();
             }
+        }
+
+        private void tbPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)            
+                Entrar();            
         }
     }
 }
