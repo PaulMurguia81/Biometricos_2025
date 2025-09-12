@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace Biometricos.Clases
 {
@@ -4363,6 +4364,74 @@ namespace Biometricos.Clases
                     dr["Verify State"] = idwInOutMode;
                     dr["WorkCode"] = idwWorkcode;
                     dt_log.Rows.Add(dr);
+                }
+                ret = 1;
+            }
+            else
+            {
+                axCZKEM1.GetLastError(ref idwErrorCode);
+                ret = idwErrorCode;
+
+                if (idwErrorCode != 0)
+                {
+                    lblOutputInfo.Items.Add("*Read attlog failed,ErrorCode: " + idwErrorCode.ToString());
+                }
+                else
+                {
+                    lblOutputInfo.Items.Add("No data from terminal returns!");
+                }
+            }
+
+            axCZKEM1.EnableDevice(GetMachineNumber(), true);//enable the device
+
+            return ret;
+        }
+
+        public int sta_readAttLogPeriod(ListBox lblOutputInfo, DataTable dt_log, string fromTime, string toTime)
+        {
+            if (GetConnectState() == false)
+            {
+                lblOutputInfo.Items.Add("*Please connect first!");
+                return -1024;
+            }
+
+            int ret = 0;
+
+            axCZKEM1.EnableDevice(GetMachineNumber(), false);//disable the device
+
+            string sdwEnrollNumber = "";
+            int idwVerifyMode = 0;
+            int idwInOutMode = 0;
+            int idwYear = 0;
+            int idwMonth = 0;
+            int idwDay = 0;
+            int idwHour = 0;
+            int idwMinute = 0;
+            int idwSecond = 0;
+            int idwWorkcode = 0;
+
+            if (axCZKEM1.ReadGeneralLogData(GetMachineNumber()))
+            {
+                while (axCZKEM1.SSR_GetGeneralLogData(GetMachineNumber(), out sdwEnrollNumber, out idwVerifyMode,out idwInOutMode, out idwYear, out idwMonth, out idwDay, out idwHour, out idwMinute, out idwSecond, ref idwWorkcode))//get records from the memory
+                {
+                    string fecha1 = idwYear + "-" + idwMonth + "-" + idwDay + " " + idwHour + ":" + idwMinute + ":" + idwSecond;
+                    string fecha2 = idwYear + "-" + idwMonth + "-" + idwDay + " " + idwHour + ":" + idwMinute + ":" + idwSecond;
+                    DateTime parsedDate1 = DateTime.Parse(fecha1);
+                    DateTime parsedDate2 = DateTime.Parse(fecha2);
+                    DateTime startDate = DateTime.Parse(fromTime);
+                    DateTime endDate = DateTime.Parse(toTime);
+
+                    if (parsedDate1 >= startDate && parsedDate2 <= endDate)
+                    {
+                        DataRow dr = dt_log.NewRow();
+                        dr["User ID"] = sdwEnrollNumber;
+                        dr["Verify Date"] = idwYear + "-" + idwMonth + "-" + idwDay;
+                        dr["Verify Hour"] = idwHour + ":" + idwMinute + ":" + idwSecond;
+                        dr["Verify Type"] = idwVerifyMode;
+                        dr["Verify State"] = idwInOutMode;
+                        dr["WorkCode"] = idwWorkcode;
+                        dt_log.Rows.Add(dr);
+                    }
                 }
                 ret = 1;
             }

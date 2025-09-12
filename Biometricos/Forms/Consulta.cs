@@ -94,9 +94,12 @@ namespace Biometricos.Forms
                 dt_periodLog.Columns.Add("Verify Hour", Type.GetType("System.String"));
                 dt_periodLog.Columns.Add("Verify Type", Type.GetType("System.Int32"));
                 dt_periodLog.Columns.Add("Verify State", Type.GetType("System.Int32"));
-                dt_periodLog.Columns.Add("WorkCode", Type.GetType("System.Int32"));                
-                                                
-                SDK.sta_readLogByPeriod(lbSysOutputInfo, dt_periodLog, fromTime, toTime);
+                dt_periodLog.Columns.Add("WorkCode", Type.GetType("System.Int32"));
+
+                if (IP == "192.9.116.199")
+                    SDK.sta_readAttLogPeriod(lbSysOutputInfo, dt_periodLog, fromTime, toTime);                
+                else
+                    SDK.sta_readLogByPeriod(lbSysOutputInfo, dt_periodLog, fromTime, toTime);
                 
                 var listaUsers = (from row in dt_periodLog.AsEnumerable()
                                     select new 
