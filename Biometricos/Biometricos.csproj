@@ -24,7 +24,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>\\192.9.7.70\sapyn\biometricos\ControlBiometrico_Nuevo\</UpdateUrl>
-    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -128,6 +128,7 @@
     <Compile Include="Clases\Log.cs" />
     <Compile Include="Clases\SDKHelper.cs" />
     <Compile Include="Clases\SearchforUSBCom.cs" />
+    <Compile Include="Clases\Usuario_Acceso.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

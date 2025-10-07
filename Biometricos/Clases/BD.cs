@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -469,8 +470,9 @@ namespace Biometricos.Clases
                             if (reader.GetValue(1) != DBNull.Value)
                             {
                                 string contra = reader.GetString(3);
+                                string sal= reader.GetString(4);
 
-                                if (CompararClave(contra, pass, "", pimienta))
+                                if (CompararClave(contra, pass, sal, pimienta))
                                     return true;
                                 else
                                     return false;
@@ -507,7 +509,6 @@ namespace Biometricos.Clases
                 return false;
             }
         }
-
         #endregion
     }
 }

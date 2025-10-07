@@ -323,7 +323,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel pnlMenuIzq;
-        private System.Windows.Forms.Button btnBiometricos;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel pnlPersonalize;
         private System.Windows.Forms.Panel pnlUser;
@@ -331,16 +330,17 @@
         private System.Windows.Forms.Panel pnlAccess;
         private System.Windows.Forms.Panel pnlData;
         private System.Windows.Forms.Panel pnlTerminal;
-        private System.Windows.Forms.Button btnUsuarios;
-        private System.Windows.Forms.Button btnConsultas;
         private System.Windows.Forms.Panel pnlSubMenu;
-        private System.Windows.Forms.Button btnAddBiometricos;
-        private System.Windows.Forms.Button btnPoleo;
-        private System.Windows.Forms.Button btnTransfer;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem abrirControlBiometToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarControlBiometToolStripMenuItem;
+        public System.Windows.Forms.Button btnBiometricos;
+        public System.Windows.Forms.Button btnConsultas;
+        public System.Windows.Forms.Button btnTransfer;
+        public System.Windows.Forms.Button btnUsuarios;
+        public System.Windows.Forms.Button btnAddBiometricos;
+        public System.Windows.Forms.Button btnPoleo;
     }
 }
 

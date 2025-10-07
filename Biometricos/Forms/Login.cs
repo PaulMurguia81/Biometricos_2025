@@ -42,9 +42,18 @@ namespace Biometricos.Forms
 
             try
             {
-                if (bd.buscarEmpleado(tbUser.Text.Trim().ToString(), tbPassword.Text.Trim().ToString()))
+                if (bd.buscarEmpleado(tbUser.Text.ToString(), tbPassword.Text.ToString()))
                 {
                     Form1 frm = new Form1();
+                    //if (tbUser.Text.Trim().ToString()=="pmurguia" && bd.buscarEmpleado(tbUser.Text.Trim().ToString(), tbPassword.Text.Trim().ToString()))
+                    //{
+                    //    frm.btnBiometricos.Enabled = false;
+                    //    //frm.btnAddBiometricos.Enabled = false;
+                    //    frm.btnConsultas.Enabled = false;
+                    //    //frm.btnPoleo.Enabled = false;
+                    //    frm.btnTransfer.Enabled = false;
+                    //    frm.btnUsuarios.Enabled = false;
+                    //}                    
                     frm.Show();
                     this.Hide();
                     SetUserCredentials();
