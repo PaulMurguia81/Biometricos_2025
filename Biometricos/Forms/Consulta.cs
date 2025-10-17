@@ -240,6 +240,8 @@ namespace Biometricos.Forms
         }
         private void btnBD_Click(object sender, EventArgs e)
         {
+            gv_Attlog.Columns.Clear();
+            gc_Attlog.DataSource = null;
             if (IsNumeric(tbBuscar.Text))
                 buscarEmpleadoXNIC();
             else
