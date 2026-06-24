@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Poleo));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.gbBiomet = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.lbSysOutputInfo = new System.Windows.Forms.ListBox();
             this.checkBox_timePeriod = new System.Windows.Forms.CheckBox();
             this.stime_log = new System.Windows.Forms.DateTimePicker();
@@ -41,6 +43,7 @@
             this.btnPoleoInd = new System.Windows.Forms.Button();
             this.btnPoleoG = new System.Windows.Forms.Button();
             this.label30 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.gbBiomet.SuspendLayout();
             this.SuspendLayout();
@@ -61,6 +64,7 @@
             // gbBiomet
             // 
             this.gbBiomet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(133)))), ((int)(((byte)(136)))));
+            this.gbBiomet.Controls.Add(this.label1);
             this.gbBiomet.Controls.Add(this.lbSysOutputInfo);
             this.gbBiomet.Controls.Add(this.checkBox_timePeriod);
             this.gbBiomet.Controls.Add(this.stime_log);
@@ -78,6 +82,18 @@
             this.gbBiomet.Size = new System.Drawing.Size(1545, 148);
             this.gbBiomet.TabIndex = 1030;
             this.gbBiomet.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(300, 87);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(1201, 30);
+            this.label1.TabIndex = 1051;
+            this.label1.Text = "Presione la tecla Ctrl y Clic al mouse para seleccionar mas de un biometrico para" +
+    " poleo individual.";
             // 
             // lbSysOutputInfo
             // 
@@ -149,10 +165,9 @@
             this.label46.ForeColor = System.Drawing.Color.White;
             this.label46.Location = new System.Drawing.Point(145, 116);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(124, 19);
+            this.label46.Size = new System.Drawing.Size(134, 19);
             this.label46.TabIndex = 977;
-            this.label46.Text = "Polo Individual";
-            this.label46.Visible = false;
+            this.label46.Text = "Poleo Individual";
             // 
             // btnPoleoInd
             // 
@@ -163,7 +178,7 @@
             this.btnPoleoInd.Size = new System.Drawing.Size(71, 61);
             this.btnPoleoInd.TabIndex = 976;
             this.btnPoleoInd.UseVisualStyleBackColor = false;
-            this.btnPoleoInd.Visible = false;
+            this.btnPoleoInd.Click += new System.EventHandler(this.btnPoleoInd_Click);
             // 
             // btnPoleoG
             // 
@@ -186,6 +201,12 @@
             this.label30.Size = new System.Drawing.Size(109, 19);
             this.label30.TabIndex = 963;
             this.label30.Text = "Poleo Global";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Poleo
             // 
@@ -221,5 +242,7 @@
         private System.Windows.Forms.DateTimePicker etime_log;
         private System.Windows.Forms.Label label16;
         public System.Windows.Forms.ListBox lbSysOutputInfo;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

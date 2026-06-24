@@ -265,7 +265,6 @@
             this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "Abrir Control Biometrico";
-            this.notifyIcon1.Visible = true;
             // 
             // contextMenuStrip1
             // 

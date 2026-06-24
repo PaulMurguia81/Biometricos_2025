@@ -67,6 +67,7 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConnect = new System.Windows.Forms.Button();
             this.cbFlag = new System.Windows.Forms.ComboBox();
+            this.btnExcel = new System.Windows.Forms.Button();
             this.gbUsuario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFotoEmpleado)).BeginInit();
             this.SuspendLayout();
@@ -490,12 +491,30 @@
             this.cbFlag.TabIndex = 1035;
             this.cbFlag.Visible = false;
             // 
+            // btnExcel
+            // 
+            this.btnExcel.BackColor = System.Drawing.Color.White;
+            this.btnExcel.Enabled = false;
+            this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExcel.Font = new System.Drawing.Font("Arial Narrow", 11.25F);
+            this.btnExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExcel.Image")));
+            this.btnExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExcel.Location = new System.Drawing.Point(600, 2);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(71, 54);
+            this.btnExcel.TabIndex = 1058;
+            this.btnExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExcel.UseVisualStyleBackColor = false;
+            this.btnExcel.Visible = false;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
             // UsersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1211, 582);
+            this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.cbFlag);
             this.Controls.Add(this.gbUsuario);
             this.Controls.Add(this.lvUserInfo);
@@ -557,5 +576,6 @@
         private System.Windows.Forms.ComboBox cbFlag;
         private System.Windows.Forms.Button btnBorrar;
         public System.Windows.Forms.ListView lvUserInfo;
+        private System.Windows.Forms.Button btnExcel;
     }
 }

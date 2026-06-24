@@ -110,6 +110,7 @@ namespace Biometricos.Forms
                 btnConnect.Image = Resources.connected_25px;
                 tbNIC.Focus();
                 cbBiometricos.Enabled = false;
+                btnExcel.Enabled = true;
             }
             else if (ret == -2)
             {
@@ -123,6 +124,7 @@ namespace Biometricos.Forms
                 lbRTOutputInfo.Items.Clear();
                 lbSysOutputInfo.Items.Clear();
                 cbBiometricos.Enabled = true;
+                btnExcel.Enabled = false;
             }
             Cursor = Cursors.Default;
         }
@@ -342,6 +344,29 @@ namespace Biometricos.Forms
                 MessageBox.Show("Seleccione Empleado Para Editar Su Informacion");
         }
 
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "CSV files (*.csv)|*.csv";
+                sfd.Title = "Exportar Información ";
+                sfd.FileName = "";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        ExportListViewToCSV(lvUserInfo, sfd.FileName);
+                        MessageBox.Show("Archivo creado correctamente!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error al exportar la información: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
         private void cbBiometricos_SelectedIndexChanged(object sender, EventArgs e)
         {
             BiometAObjeto();
@@ -349,6 +374,50 @@ namespace Biometricos.Forms
                 id_bio = string.Empty;            
             else
                 IP= bd.D_ObtenerIP(objEntidad);            
+        }
+
+        public static void ExportListViewToCSV(System.Windows.Forms.ListView listView, string filePath)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            // 1. Exportar Encabezados de Columnas
+            for (int i = 0; i < listView.Columns.Count; i++)
+            {
+                sb.Append(EscapeCSV(listView.Columns[i].Text));
+                if (i < listView.Columns.Count - 1)
+                    sb.Append(",");
+            }
+            sb.AppendLine();
+
+            // 2. Exportar renglones con información
+            foreach (ListViewItem item in listView.Items)
+            {
+                for (int i = 0; i < listView.Columns.Count; i++)
+                {
+                    // Safely fetch subitem text matching the column count
+                    string text = i < item.SubItems.Count ? item.SubItems[i].Text : "";
+                    sb.Append(EscapeCSV(text));
+
+                    if (i < listView.Columns.Count - 1)
+                        sb.Append(",");
+                }
+                sb.AppendLine();
+            }
+
+            // 3. Guargar archivo
+            File.WriteAllText(filePath, sb.ToString(), Encoding.UTF8);
+        }
+
+        // Helper method to escape commas, quotes, and newlines
+        private static string EscapeCSV(string data)
+        {
+            if (string.IsNullOrEmpty(data)) return "";
+
+            if (data.Contains(",") || data.Contains("\"") || data.Contains("\r") || data.Contains("\n"))
+            {
+                return $"\"{data.Replace("\"", "\"\"")}\"";
+            }
+            return data;
         }
     }
 }

@@ -21,7 +21,6 @@ namespace Biometricos.Forms
         private Form1 _Poleo;
         public BD bd = new BD();
         E_Biometricos obj = new E_Biometricos();
-        //E_Usuario_Registros e_usuarios = new E_Usuario_Registros();
         public SDKHelper SDK = new SDKHelper();
         int i;
 
@@ -46,7 +45,6 @@ namespace Biometricos.Forms
             dgvMaster.RowHeadersVisible = false;
             dgvMaster.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvMaster.RowTemplate.DefaultCellStyle.Padding = new Padding(5, 0, 10, 0);
-            // dgvMaster.Columns[0].AutoSizeMode =DataGridViewAutoSizeColumnMode.DisplayedCells;
             foreach (DataGridViewColumn c in dgvMaster.Columns)
             {
                 c.Resizable = DataGridViewTriState.True;
@@ -66,14 +64,13 @@ namespace Biometricos.Forms
 
         private void btnPoleoG_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show("Los registros de todos los biometricos se guardaran en la BD, \neste proceso puede tardar unos minutos, desea continuar?", "Poleo Manual", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            DialogResult dr = MessageBox.Show("Los registros de todos los biometricos se guardaran en la BD, este proceso puede tardar unos minutos desea continuar?", "Poleo Manual", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (dr == DialogResult.Yes)
             {
                 bd.max_transac();
                 PoleoGlobal();
 
-                MessageBox.Show("La informacion de los biometricos poleados se guardo correctamente");
-               
+                MessageBox.Show("La informacion de los biometricos se guardo correctamente");
             }
         }
 
@@ -81,14 +78,12 @@ namespace Biometricos.Forms
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-
                 obj.id_biometrico = (int)row.Cells["id_biometrico"].Value;
                 obj.ip_biometrico = row.Cells["ip_biometrico"].Value.ToString();
                 obj.descripcion = row.Cells["descripcion"].Value.ToString();
                 
                 i = row.Index;
                 conectarBiometrico();
-                //cargarDatosBiometrico(int.Parse(bio));
             }
         }
 
@@ -97,11 +92,8 @@ namespace Biometricos.Forms
             Cursor = Cursors.WaitCursor;
 
             int ret = SDK.sta_ConnectTCP1(lbSysOutputInfo, obj.ip_biometrico, "4370", "0");
-            if (ret == 1)
-            {
-                cargarDatosBiometrico(obj.id_biometrico);
-                //MessageBox.Show("Se conecto el Biometrico # " + obj.id_biometrico + "con IP: " + obj.ip_biometrico );
-            }
+            if (ret == 1)           
+                cargarDatosBiometrico(obj.id_biometrico);            
             else if (ret == -2)
             {
                 //MessageBox.Show("NO SE CONECTO EL BIOMETRICO");
@@ -154,18 +146,53 @@ namespace Biometricos.Forms
                               id_biometrico = e_usuarios.id_biometrico= obj.id_biometrico
                           }).ToList();
 
-          
-
-
             int nGuardar = -1;            
 
             nGuardar = bd.D_InsertarRegistros(joined);
         }
 
-        private void BiometAObjeto()
+        private void btnPoleoInd_Click(object sender, EventArgs e)
         {
-            //e_usuarios.id_biometrico = obj.id_biometrico;
+            if (dataGridView1.SelectedCells.Count > 0)
+            {
+                DialogResult dr = MessageBox.Show("Los registros del biometrico seleccionado se guardaran en la BD,este proceso puede tardar unos minutos desea continuar?", "Poleo Manual", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (dr == DialogResult.Yes)
+                {
+                    bd.max_transac();
+                    PoleoIndividual();
 
+                    MessageBox.Show("La informacion de los biometricos se guardo correctamente");
+                    dataGridView1.ClearSelection();
+                }
+                else
+                    dataGridView1.ClearSelection();
+            }
+            else
+                MessageBox.Show("Seleccione uno o mas biometricos para guardar la informacion","", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void PoleoIndividual()
+        {
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                obj.id_biometrico = (int)row.Cells["id_biometrico"].Value;
+                obj.ip_biometrico = row.Cells["ip_biometrico"].Value.ToString();
+                obj.descripcion = row.Cells["descripcion"].Value.ToString();
+                i = row.Index;
+                conectarBiometrico();
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //if (label1.ForeColor == Color.White)
+            //{
+            //    label1.ForeColor = Color.FromArgb(46, 133, 136); // Makes it "disappear"
+            //}
+            //else
+            //{
+            //    label1.ForeColor = Color.White;
+            //}
         }
     }
 }
