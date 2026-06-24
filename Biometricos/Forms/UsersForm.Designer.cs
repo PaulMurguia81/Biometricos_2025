@@ -505,7 +505,6 @@
             this.btnExcel.TabIndex = 1058;
             this.btnExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExcel.UseVisualStyleBackColor = false;
-            this.btnExcel.Visible = false;
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
             // UsersForm
