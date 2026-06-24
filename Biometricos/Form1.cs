@@ -249,8 +249,9 @@ namespace Biometricos
             //}
         }
 
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // Aquí puedes limpiar recursos si es necesario
             Environment.Exit(0);
         }
     }
