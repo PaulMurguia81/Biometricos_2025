@@ -359,6 +359,7 @@
             this.gbUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbUsuario.BackColor = System.Drawing.Color.White;
+            this.gbUsuario.Controls.Add(this.btnExcel);
             this.gbUsuario.Controls.Add(this.btnBorrar);
             this.gbUsuario.Controls.Add(this.picFotoEmpleado);
             this.gbUsuario.Controls.Add(this.btnEditarUsuario);
@@ -499,10 +500,11 @@
             this.btnExcel.Font = new System.Drawing.Font("Arial Narrow", 11.25F);
             this.btnExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExcel.Image")));
             this.btnExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExcel.Location = new System.Drawing.Point(600, 2);
+            this.btnExcel.Location = new System.Drawing.Point(496, 69);
             this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(71, 54);
+            this.btnExcel.Size = new System.Drawing.Size(136, 41);
             this.btnExcel.TabIndex = 1058;
+            this.btnExcel.Text = "Exportar Datos";
             this.btnExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExcel.UseVisualStyleBackColor = false;
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
@@ -513,7 +515,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1211, 582);
-            this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.cbFlag);
             this.Controls.Add(this.gbUsuario);
             this.Controls.Add(this.lvUserInfo);

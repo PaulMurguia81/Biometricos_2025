@@ -356,7 +356,7 @@ namespace Biometricos.Forms
                 {
                     try
                     {
-                        ExportListViewToCSV(lvUserInfo, sfd.FileName);
+                        ExportListViewToCSV(lvUserInfo, sfd.FileName, cbBiometricos);
                         MessageBox.Show("Archivo creado correctamente!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
@@ -376,17 +376,20 @@ namespace Biometricos.Forms
                 IP= bd.D_ObtenerIP(objEntidad);            
         }
 
-        public static void ExportListViewToCSV(System.Windows.Forms.ListView listView, string filePath)
+        public static void ExportListViewToCSV(System.Windows.Forms.ListView listView, string filePath, System.Windows.Forms.ComboBox cbBiometricos)
         {
             StringBuilder sb = new StringBuilder();
+
+            // Obtener el nombre del biométrico seleccionado (una sola vez, fuera del loop)
+            string biometricoNombre = cbBiometricos.SelectedItem != null ? cbBiometricos.GetItemText(cbBiometricos.SelectedItem) : "";
 
             // 1. Exportar Encabezados de Columnas
             for (int i = 0; i < listView.Columns.Count; i++)
             {
                 sb.Append(EscapeCSV(listView.Columns[i].Text));
-                if (i < listView.Columns.Count - 1)
-                    sb.Append(",");
+                sb.Append(",");   // <-- SIEMPRE agrega coma, sin condicional
             }
+            sb.Append(EscapeCSV("Biometrico"));
             sb.AppendLine();
 
             // 2. Exportar renglones con información
@@ -394,17 +397,15 @@ namespace Biometricos.Forms
             {
                 for (int i = 0; i < listView.Columns.Count; i++)
                 {
-                    // Safely fetch subitem text matching the column count
                     string text = i < item.SubItems.Count ? item.SubItems[i].Text : "";
                     sb.Append(EscapeCSV(text));
-
-                    if (i < listView.Columns.Count - 1)
-                        sb.Append(",");
+                    sb.Append(",");   // <-- SIEMPRE agrega coma, sin condicional
                 }
+                sb.Append(EscapeCSV(biometricoNombre));
                 sb.AppendLine();
             }
 
-            // 3. Guargar archivo
+            // 3. Guardar archivo
             File.WriteAllText(filePath, sb.ToString(), Encoding.UTF8);
         }
 
