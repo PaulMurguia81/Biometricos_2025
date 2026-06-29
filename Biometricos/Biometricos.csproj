@@ -13,7 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>\\192.9.7.70\sapyn\biometricos\ControlBiometrico_Nuevo\</PublishUrl>
+    <PublishUrl>\\192.9.7.31\Sistemas\biometricos\ControlBiometrico_Nuevo\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -23,8 +23,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <UpdateUrl>\\192.9.7.70\sapyn\biometricos\ControlBiometrico_Nuevo\</UpdateUrl>
-    <ApplicationRevision>6</ApplicationRevision>
+    <UpdateUrl>\\192.9.7.31\Sistemas\biometricos\ControlBiometrico_Nuevo\</UpdateUrl>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>

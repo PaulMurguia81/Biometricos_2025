@@ -341,6 +341,12 @@ namespace Biometricos.Forms
                     {
                         try
                         {
+                            // 1. Identify the first column (by visible index or absolute index)
+                            var firstColumn = gv_Attlog.VisibleColumns[0];
+
+                            // 2. Exclude it from the printing/export engine
+                            firstColumn.OptionsColumn.Printable = DevExpress.Utils.DefaultBoolean.False;
+
                             string fullPath = sfd.FileName;
                             gc_Attlog.ExportToCsv(fullPath);    
                         }
