@@ -6541,7 +6541,7 @@ namespace Biometricos.Clases
 
             if (axCZKEM1.GetDeviceTime(iMachineNumber, ref idwYear, ref idwMonth, ref idwDay, ref idwHour, ref idwMinute, ref idwSecond))//show the time
             {
-                lbDeviceTime.Text = idwYear.ToString() + "-" + idwMonth.ToString() + "-" + idwDay.ToString() + " " + idwHour.ToString() + ":" + idwMinute.ToString() + ":" + idwSecond.ToString();
+                lbDeviceTime.Text = "Hora " + idwHour.ToString() + ":" + idwMinute.ToString() + ":" + idwSecond.ToString()+ "    Fecha: " + idwDay.ToString() + "-" + idwMonth.ToString() + "-" + idwYear.ToString();
                 lblOutputInfo.Items.Add("Get devie time successfully");
             }
             else
@@ -6550,6 +6550,7 @@ namespace Biometricos.Clases
                 lblOutputInfo.Items.Add("*Operation failed,ErrorCode=" + idwErrorCode.ToString());
             }
 
+            bIsConnected = false;
             return 1;
         }
 

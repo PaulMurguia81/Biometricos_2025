@@ -112,6 +112,8 @@ namespace Biometricos.Forms
             tbUbicacion.Text = "";
             tbDescrip.Text = "";
             tabla = "";
+            lbDeviceTime.Text = "";
+            label1.Text = "";
         }
 
         private void cbMunicipio_SelectedIndexChanged(object sender, EventArgs e)
@@ -416,6 +418,9 @@ namespace Biometricos.Forms
                 cbMunicipio.Text = row.Cells[2].Value.ToString();
                 tbUbicacion.Text = row.Cells[3].Value.ToString();
                 tbDescrip.Text = row.Cells[4].Value.ToString();
+                
+                ipAddress = tbIpbiomet.Text;
+                getDeviceTime();
             }
         }
 
@@ -424,6 +429,20 @@ namespace Biometricos.Forms
             Limpiar();
         }
 
+        public void getDeviceTime()
+        {
+            Cursor = Cursors.WaitCursor;
+            int ret = SDK.sta_ConnectTCP(lbSysOutputInfo, ipAddress.Trim(),"4370", "0");
+
+            if (SDK.GetConnectState())
+            {
+                Cursor = Cursors.WaitCursor;
+                SDK.sta_GetDeviceTime(lbSysOutputInfo,lbDeviceTime);
+                label1.Text= tbDescrip.Text.Trim();
+                Cursor = Cursors.Default;
+            }
+            Cursor = Cursors.Default;  
+        }
         private void gvBiomet_RowStyle(object sender, RowStyleEventArgs e)
         {
             //if (e.RowHandle >= 0)

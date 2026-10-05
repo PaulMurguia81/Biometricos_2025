@@ -31,10 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TerminalForm));
             this.gbBiomet = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnLimpiar = new System.Windows.Forms.Button();
             this.label72 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
             this.btnOnLine = new System.Windows.Forms.Button();
+            this.lbDeviceTime = new System.Windows.Forms.Label();
             this.btnSYNC = new System.Windows.Forms.Button();
             this.label73 = new System.Windows.Forms.Label();
             this.btnBorrarBiom = new System.Windows.Forms.Button();
@@ -55,10 +55,10 @@
             this.label30 = new System.Windows.Forms.Label();
             this.tbBiomet = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.gcBiomet = new DevExpress.XtraGrid.GridControl();
             this.gvBiomet = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.lbSysOutputInfo = new System.Windows.Forms.ListBox();
-            this.lbDeviceTime = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.gbBiomet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcBiomet)).BeginInit();
@@ -70,10 +70,10 @@
             // 
             this.gbBiomet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(133)))), ((int)(((byte)(136)))));
             this.gbBiomet.Controls.Add(this.label1);
-            this.gbBiomet.Controls.Add(this.btnLimpiar);
             this.gbBiomet.Controls.Add(this.label72);
             this.gbBiomet.Controls.Add(this.label47);
             this.gbBiomet.Controls.Add(this.btnOnLine);
+            this.gbBiomet.Controls.Add(this.lbDeviceTime);
             this.gbBiomet.Controls.Add(this.btnSYNC);
             this.gbBiomet.Controls.Add(this.label73);
             this.gbBiomet.Controls.Add(this.btnBorrarBiom);
@@ -94,11 +94,12 @@
             this.gbBiomet.Controls.Add(this.label30);
             this.gbBiomet.Controls.Add(this.tbBiomet);
             this.gbBiomet.Controls.Add(this.label35);
+            this.gbBiomet.Controls.Add(this.btnLimpiar);
             this.gbBiomet.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbBiomet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gbBiomet.Location = new System.Drawing.Point(0, 0);
             this.gbBiomet.Name = "gbBiomet";
-            this.gbBiomet.Size = new System.Drawing.Size(1066, 148);
+            this.gbBiomet.Size = new System.Drawing.Size(1460, 148);
             this.gbBiomet.TabIndex = 958;
             this.gbBiomet.TabStop = false;
             // 
@@ -107,28 +108,12 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(578, 116);
+            this.label1.Location = new System.Drawing.Point(1011, 77);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(137, 19);
+            this.label1.Size = new System.Drawing.Size(0, 32);
             this.label1.TabIndex = 1028;
-            this.label1.Text = "Limpiar Campos";
-            this.label1.Visible = false;
-            // 
-            // btnLimpiar
-            // 
-            this.btnLimpiar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLimpiar.BackColor = System.Drawing.Color.White;
-            this.btnLimpiar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiar.Image")));
-            this.btnLimpiar.Location = new System.Drawing.Point(601, 54);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(71, 61);
-            this.btnLimpiar.TabIndex = 1027;
-            this.btnLimpiar.UseVisualStyleBackColor = false;
-            this.btnLimpiar.Visible = false;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // label72
             // 
@@ -168,6 +153,16 @@
             this.btnOnLine.TabIndex = 1022;
             this.btnOnLine.UseVisualStyleBackColor = false;
             this.btnOnLine.Click += new System.EventHandler(this.btnOnLine_Click);
+            // 
+            // lbDeviceTime
+            // 
+            this.lbDeviceTime.AutoSize = true;
+            this.lbDeviceTime.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDeviceTime.ForeColor = System.Drawing.Color.White;
+            this.lbDeviceTime.Location = new System.Drawing.Point(1075, 111);
+            this.lbDeviceTime.Name = "lbDeviceTime";
+            this.lbDeviceTime.Size = new System.Drawing.Size(0, 30);
+            this.lbDeviceTime.TabIndex = 1028;
             // 
             // btnSYNC
             // 
@@ -231,7 +226,7 @@
             this.checkBiometrico.AutoSize = true;
             this.checkBiometrico.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBiometrico.ForeColor = System.Drawing.Color.White;
-            this.checkBiometrico.Location = new System.Drawing.Point(913, 72);
+            this.checkBiometrico.Location = new System.Drawing.Point(692, 72);
             this.checkBiometrico.Name = "checkBiometrico";
             this.checkBiometrico.Size = new System.Drawing.Size(182, 23);
             this.checkBiometrico.TabIndex = 974;
@@ -327,7 +322,7 @@
             // 
             this.btnInactivar.BackColor = System.Drawing.Color.White;
             this.btnInactivar.Image = ((System.Drawing.Image)(resources.GetObject("btnInactivar.Image")));
-            this.btnInactivar.Location = new System.Drawing.Point(822, 54);
+            this.btnInactivar.Location = new System.Drawing.Point(601, 54);
             this.btnInactivar.Name = "btnInactivar";
             this.btnInactivar.Size = new System.Drawing.Size(71, 61);
             this.btnInactivar.TabIndex = 964;
@@ -350,7 +345,7 @@
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.ForeColor = System.Drawing.Color.White;
-            this.label29.Location = new System.Drawing.Point(806, 116);
+            this.label29.Location = new System.Drawing.Point(585, 116);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(107, 19);
             this.label29.TabIndex = 966;
@@ -386,6 +381,20 @@
             this.label35.TabIndex = 955;
             this.label35.Text = "Num Biometrico:";
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLimpiar.BackColor = System.Drawing.Color.White;
+            this.btnLimpiar.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiar.Image")));
+            this.btnLimpiar.Location = new System.Drawing.Point(601, 54);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(71, 61);
+            this.btnLimpiar.TabIndex = 1027;
+            this.btnLimpiar.UseVisualStyleBackColor = false;
+            this.btnLimpiar.Visible = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // gcBiomet
             // 
             this.gcBiomet.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -393,7 +402,7 @@
             this.gcBiomet.Location = new System.Drawing.Point(0, 148);
             this.gcBiomet.MainView = this.gvBiomet;
             this.gcBiomet.Name = "gcBiomet";
-            this.gcBiomet.Size = new System.Drawing.Size(1066, 482);
+            this.gcBiomet.Size = new System.Drawing.Size(1460, 482);
             this.gcBiomet.TabIndex = 959;
             this.gcBiomet.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvBiomet});
@@ -425,15 +434,6 @@
             this.lbSysOutputInfo.TabIndex = 1027;
             this.lbSysOutputInfo.Visible = false;
             // 
-            // lbDeviceTime
-            // 
-            this.lbDeviceTime.AutoSize = true;
-            this.lbDeviceTime.Location = new System.Drawing.Point(959, 169);
-            this.lbDeviceTime.Name = "lbDeviceTime";
-            this.lbDeviceTime.Size = new System.Drawing.Size(35, 13);
-            this.lbDeviceTime.TabIndex = 1028;
-            this.lbDeviceTime.Text = "label1";
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -444,7 +444,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1066, 482);
+            this.dataGridView1.Size = new System.Drawing.Size(1460, 482);
             this.dataGridView1.TabIndex = 1029;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -453,12 +453,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1066, 630);
+            this.ClientSize = new System.Drawing.Size(1460, 630);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.gcBiomet);
             this.Controls.Add(this.gbBiomet);
             this.Controls.Add(this.lbSysOutputInfo);
-            this.Controls.Add(this.lbDeviceTime);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "TerminalForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -471,7 +470,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvBiomet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
