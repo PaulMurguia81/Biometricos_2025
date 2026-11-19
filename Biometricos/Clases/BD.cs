@@ -312,7 +312,6 @@ namespace Biometricos.Clases
 
         public int D_InsertarRegistros(List<E_Usuario_Registros> usuario_registros)
         {
-           //DB2Command cmd;
             num_transac_max = num_transac_max + 1;
             int result = 0;
 
@@ -434,7 +433,6 @@ namespace Biometricos.Clases
 
         public bool VerifyConnection()
         {
-
             string connetionString = null;
             DB2Connection cnn;
             connetionString = ConfigurationManager.ConnectionStrings["ibmconex"].ConnectionString;
@@ -451,52 +449,133 @@ namespace Biometricos.Clases
                 return false;
             }
         }
+        
+        #region LOGIN NUEVO
 
         public bool UsuarioAcceso(string user, string pass)
         {
-            using (DB2Connection MyConn = new DB2Connection())
+            try
             {
-                try
+                using (DB2Connection conn = new DB2Connection(
+                    ConfigurationManager.ConnectionStrings["ibmconex"].ConnectionString))
                 {
-                    DB2Connection conn = new DB2Connection(ConfigurationManager.ConnectionStrings["ibmconex"].ConnectionString);
-                    conn.Open();                    
-                    DB2Command cmd = new DB2Command("select first 1 * from biometrico_acceso where activo='t' and nombreusuario='" + user + "'", conn);
-                    DB2DataReader reader = cmd.ExecuteReader();
+                    conn.Open();
 
-                    if (reader.HasRows)
+                    string contra;
+                    string sal;
+                    int id;
+
+                    // 1) Datos de acceso del usuario
+                    using (DB2Command cmd = new DB2Command(
+                        "select first 1 * from usuario_acceso where activo = 't' and nombreusuario = ?", conn))
                     {
-                        while (reader.Read())
-                        {
-                            if (reader.GetValue(1) != DBNull.Value)
-                            {
-                                string contra = reader.GetString(3);
-                                string sal= reader.GetString(4);
+                        cmd.Parameters.Add(new DB2Parameter("@user", user));
 
-                                if (CompararClave(contra, pass, sal, pimienta))
-                                    return true;
-                                else
-                                    return false;
-                            }
+                        using (DB2DataReader reader = cmd.ExecuteReader())
+                        {
+                            if (!reader.Read())
+                                return false; // usuario no existe o inactivo
+
+                            if (reader.IsDBNull(1) || reader.IsDBNull(3) || reader.IsDBNull(4))
+                                return false;
+
+                            id = reader.GetInt32(1); // si lo necesitas
+                            contra = reader.GetString(3);
                         }
                     }
-                    else
+
+                    // 2) Verificar que el usuario esté activo en uac_usuarios
+                    bool activoEnUac;
+                    using (DB2Command cmd1 = new DB2Command(
+                        "select * from uac_usuarios where activo = 1 and usuarioid = ?", conn))
                     {
-                        return false;
+                        cmd1.Parameters.Add(new DB2Parameter("@usuarioid", id));
+
+                        using (DB2DataReader reader1 = cmd1.ExecuteReader())
+                        {
+                            if (!reader1.Read())
+                                return false; // usuario no existe o inactivo
+
+                            // Estas columnas sí son obligatorias
+                            if (reader1.IsDBNull(1) || reader1.IsDBNull(3) || reader1.IsDBNull(4))
+                                return false;
+
+                            // La sal puede ser NULL
+                            sal = reader1.IsDBNull(12) ? string.Empty : reader1.GetString(12);
+                        }
+
+                        activoEnUac = cmd1.ExecuteScalar() != null;
                     }
-                    conn.Close();
-                    Console.ReadLine();
 
-                    return true;
-                }
-                catch (DB2Exception e)
-                {
-                    Console.WriteLine(e.ToString());
-                    Console.ReadLine();
+                    if (!activoEnUac)
+                        return false;
 
-                    return false;
+                    // 3) Comparar la contraseña
+                    return CompararClave(contra, pass, sal, pimienta);
                 }
             }
+            catch (DB2Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
         }
+
+        #endregion
+
+        #region LOGIN ANTERIOR
+
+        //public bool UsuarioAcceso(string user, string pass)
+        //{
+        //    using (DB2Connection MyConn = new DB2Connection())
+        //    {
+        //        try
+        //        {
+        //            DB2Connection conn = new DB2Connection(ConfigurationManager.ConnectionStrings["ibmconex"].ConnectionString);
+        //            conn.Open();                    
+        //            DB2Command cmd = new DB2Command("select first 1 * from usuario_acceso where activo='t' and nombreusuario='" + user + "'", conn);
+        //            DB2DataReader reader = cmd.ExecuteReader();
+
+        //            if (reader.HasRows)
+        //            {
+        //                int id = reader.GetInt32(2);
+        //                DB2Command cmd1 = new DB2Command("select * from uac_usuarios where activo=1 and usuarioid='" + user + "'", conn);
+        //                DB2DataReader reader1 = cmd.ExecuteReader();
+
+        //                while (reader.Read() && reader1.Read())
+        //                {
+        //                    if (reader.GetValue(1) != DBNull.Value)
+        //                    {
+        //                        string contra = reader.GetString(3);
+        //                        string sal= reader.GetString(4);
+
+        //                        if (CompararClave(contra, pass, sal, pimienta))
+        //                            return true;
+        //                        else
+        //                            return false;
+        //                    }
+        //                }
+        //            }
+        //            else
+        //            {
+        //                return false;
+        //            }
+        //            conn.Close();
+        //            Console.ReadLine();
+
+        //            return true;
+        //        }
+        //        catch (DB2Exception e)
+        //        {
+        //            Console.WriteLine(e.ToString());
+        //            Console.ReadLine();
+
+        //            return false;
+        //        }
+        //    }
+        //}
+
+        #endregion
 
         public static bool CompararClave(string clavedigerida, string clave, string sal, string pimienta)
         {
@@ -509,6 +588,7 @@ namespace Biometricos.Clases
                 return false;
             }
         }
+       
         #endregion
     }
 }
